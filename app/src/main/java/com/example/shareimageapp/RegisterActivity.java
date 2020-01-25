@@ -81,6 +81,9 @@ public class RegisterActivity extends AppCompatActivity {
                 //validation - to short password
                 else if (str_password.length() < 6) {
                     Toast.makeText(RegisterActivity.this, "Password must have 6 characters", Toast.LENGTH_SHORT).show();
+                } else {
+                    //all is good, send user info to register logic
+                    register(str_username, str_fullname, str_email, str_password);
                 }
 
             }
