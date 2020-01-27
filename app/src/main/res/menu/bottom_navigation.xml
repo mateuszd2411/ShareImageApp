@@ -3,22 +3,27 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="nav_home"
+        android:id="@+id/nav_home"
         android:icon="@drawable/ic_home"
         android:title="" />
 
     <item
-        android:id="nav_search"
+        android:id="@+id/nav_search"
         android:icon="@drawable/ic_search"
         android:title="" />
 
     <item
-        android:id="nav_heart"
+        android:id="@+id/nav_add"
+        android:icon="@drawable/ic_add"
+        android:title="" />
+
+    <item
+        android:id="@+id/nav_heart"
         android:icon="@drawable/ic_heart"
         android:title="" />
 
     <item
-        android:id="nav_profile"
+        android:id="@+id/nav_profile"
         android:icon="@drawable/ic_profile"
         android:title="" />
 
