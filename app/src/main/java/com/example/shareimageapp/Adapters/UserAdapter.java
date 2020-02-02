@@ -14,6 +14,11 @@ import com.example.shareimageapp.Models.User;
 import com.example.shareimageapp.R;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.List;
 
@@ -54,6 +59,7 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder> {
         viewHolder.fullname.setText(user.getFullname());
         //set profile image
         Glide.with(mContext).load(user.getImageurl()).into(viewHolder.image_profile);
+        isFollowing(user.getId(), viewHolder.btn_follow);
 
         //don't display follow btn for myself
         if (user.getId().equals(firebaseUser.getUid())) {
@@ -82,6 +88,29 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder> {
             image_profile = itemView.findViewById(R.id.image_profile);
             btn_follow = itemView.findViewById(R.id.btn_follow);
         }
+    }
+
+    private void isFollowing(final String userid, final Button button) {
+        //go to "Follow" --> "following" in realtime database
+        DatabaseReference reference = FirebaseDatabase.getInstance().getReference()
+                .child("Follow").child(firebaseUser.getUid()).child("following");
+
+        reference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                //validation for follow button
+                if (dataSnapshot.child(userid).exists()) {
+                    button.setText("following");
+                } else {
+                    button.setText("follow");
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
     }
 
 }
