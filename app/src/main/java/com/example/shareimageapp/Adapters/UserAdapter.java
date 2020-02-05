@@ -1,6 +1,7 @@
 package com.example.shareimageapp.Adapters;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -9,7 +10,10 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
+import androidx.fragment.app.FragmentActivity;
+
 import com.bumptech.glide.Glide;
+import com.example.shareimageapp.Fragments.ProfileFragment;
 import com.example.shareimageapp.Models.User;
 import com.example.shareimageapp.R;
 import com.google.firebase.auth.FirebaseAuth;
@@ -47,7 +51,7 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder> {
     }
 
     @Override
-    public void onBindViewHolder(@NonNull UserAdapter.ViewHolder viewHolder, int i) {
+    public void onBindViewHolder(@NonNull final UserAdapter.ViewHolder viewHolder, int i) {
 
         firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
 
@@ -65,6 +69,42 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder> {
         if (user.getId().equals(firebaseUser.getUid())) {
             viewHolder.btn_follow.setVisibility(View.GONE);
         }
+
+        viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //Set SharedPreferences for individual id user
+                SharedPreferences.Editor editor = mContext.getSharedPreferences("PREFS", Context.MODE_PRIVATE).edit();
+                editor.putString("profileid", user.getId());
+                editor.apply();
+
+                //replace fragment_container
+                ((FragmentActivity) mContext).getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
+                        new ProfileFragment()).commit();
+            }
+        });
+
+        //set follow button clickable
+        viewHolder.btn_follow.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //Logic for click follow button to change info in realtime database
+                if (viewHolder.btn_follow.getText().toString().equals("follow")) {
+                    FirebaseDatabase.getInstance().getReference().child("Follow").child(firebaseUser.getUid())
+                            .child("following").child(firebaseUser.getUid()).setValue(true);
+
+                    FirebaseDatabase.getInstance().getReference().child("Follow").child(user.getId())
+                            .child("followers").child(firebaseUser.getUid()).setValue(true);
+                } else {
+
+                    FirebaseDatabase.getInstance().getReference().child("Follow").child(firebaseUser.getUid())
+                            .child("following").child(firebaseUser.getUid()).removeValue();
+
+                    FirebaseDatabase.getInstance().getReference().child("Follow").child(user.getId())
+                            .child("followers").child(firebaseUser.getUid()).removeValue();
+                }
+            }
+        });
     }
 
     @Override
