@@ -36,10 +36,9 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder> {
 
     private FirebaseUser firebaseUser;
 
-    public UserAdapter(Context mContext, List<User> mUser, FirebaseUser firebaseUser) {
+    public UserAdapter(Context mContext, List<User> mUser) {
         this.mContext = mContext;
         this.mUser = mUser;
-        this.firebaseUser = firebaseUser;
     }
 
     @NonNull
