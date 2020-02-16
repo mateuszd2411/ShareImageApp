@@ -24,6 +24,7 @@ import com.google.firebase.database.ValueEventListener;
 
 public class LoginActivity extends AppCompatActivity {
 
+    //views
     EditText email, password;
     Button login;
     TextView txt_signup;
