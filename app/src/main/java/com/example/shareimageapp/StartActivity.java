@@ -1,7 +1,8 @@
 package com.example.shareimageapp;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -15,18 +16,17 @@ public class StartActivity extends AppCompatActivity {
 
     FirebaseUser firebaseUser;
 
-    //every time when app is starting
     @Override
     protected void onStart() {
         super.onStart();
 
         firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
 
-        //validation if user is not null
-        if (firebaseUser != null) {
+        if(firebaseUser !=null){
             startActivity(new Intent(StartActivity.this, MainActivity.class));
             finish();
         }
+
     }
 
     @Override
@@ -34,11 +34,9 @@ public class StartActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_start);
 
-        //init views from activity_main.xml
         login = findViewById(R.id.login);
         register = findViewById(R.id.register);
 
-        //go to login option
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -46,7 +44,6 @@ public class StartActivity extends AppCompatActivity {
             }
         });
 
-        //go to register option
         register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

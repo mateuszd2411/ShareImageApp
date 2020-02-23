@@ -1,9 +1,10 @@
 package com.example.shareimageapp;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+
 import android.app.ProgressDialog;
 import android.content.Intent;
-import android.support.annotation.NonNull;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
@@ -34,6 +35,7 @@ public class RegisterActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
 
@@ -44,14 +46,8 @@ public class RegisterActivity extends AppCompatActivity {
         register = findViewById(R.id.register);
         txt_login = findViewById(R.id.txt_login);
 
-        auth = FirebaseAuth.getInstance();
 
-        txt_login.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(RegisterActivity.this, LoginActivity.class));
-            }
-        });
+        auth = FirebaseAuth.getInstance();
 
         txt_login.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -67,79 +63,70 @@ public class RegisterActivity extends AppCompatActivity {
                 pd.setMessage("Please wait...");
                 pd.show();
 
-                //for get information from EditText (in xml layout)
                 String str_username = username.getText().toString();
                 String str_fullname = fullname.getText().toString();
                 String str_email = email.getText().toString();
                 String str_password = password.getText().toString();
 
-                //validations - not empty edit text
-                if (TextUtils.isEmpty(str_username) || TextUtils.isEmpty(str_fullname)
-                        || TextUtils.isEmpty(str_email) || TextUtils.isEmpty(str_password)) {
-                    Toast.makeText(RegisterActivity.this, "All fields are required..", Toast.LENGTH_SHORT).show();
-                }
-                //validation - to short password
-                else if (str_password.length() < 6) {
-                    Toast.makeText(RegisterActivity.this, "Password must have 6 characters", Toast.LENGTH_SHORT).show();
-                } else {
-                    //all is good, send user info to register logic
+
+                if(TextUtils.isEmpty(str_username) || TextUtils.isEmpty(str_fullname)
+                       || TextUtils.isEmpty(str_email) || TextUtils.isEmpty(str_password))
+                {
+                    Toast.makeText(RegisterActivity.this, "All files are required!", Toast.LENGTH_SHORT).show();
+                }else if (str_password.length() <6){
+                    Toast.makeText(RegisterActivity.this, "Password must have 6 characters.", Toast.LENGTH_SHORT).show();
+                }else
+                {
                     register(str_username, str_fullname, str_email, str_password);
                 }
-
             }
         });
 
-    }//onCreate
 
-    //Logic for Register
-    private void register(final String username, final String fullname, String email, String password) {
+    }
 
+    private void register(final String username, final String fullnaem, String email, String password)
+    {
         auth.createUserWithEmailAndPassword(email, password)
-                //check if everything is ok
                 .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
 
-                        if (task.isSuccessful()) {
+                        if(task.isSuccessful())
+                        {
                             FirebaseUser firebaseUser = auth.getCurrentUser();
                             String userid = firebaseUser.getUid();
 
-                            //create and go to "folder" in realtime database -> UsersApp
-                            reference = FirebaseDatabase.getInstance().getReference().child("UsersApp")
-                                    .child(userid);
+                            reference = FirebaseDatabase.getInstance().getReference().child("Users").child(userid);
 
-                            //put information about new user to realtime database
                             HashMap<String, Object> hashMap = new HashMap<>();
                             hashMap.put("id", userid);
-                            hashMap.put("username", username.toLowerCase());    //toLowerCase for search users
-                            hashMap.put("fullname", fullname);
+                            hashMap.put("username", username.toLowerCase());
+                            hashMap.put("fullname", fullnaem);
                             hashMap.put("bio", "");
-                            //default profile picture
-                            hashMap.put("imageurl", "https://firebasestorage.googleapis.com/v0/b/facebook-login-9128b.appspot.com/o/profilePic.gif?alt=media&token=aeea53b5-1efc-4a12-98f4-1b34f7932806");
+                            hashMap.put("imageurl","https://firebasestorage.googleapis.com/v0/b/facebook-login-9128b.appspot.com/o/placeholder.png?alt=media&token=9c182ad7-a369-439f-98b2-470a397aecf9" );
 
-                            //set values from hashMap to realtime database
                             reference.setValue(hashMap).addOnCompleteListener(new OnCompleteListener<Void>() {
                                 @Override
                                 public void onComplete(@NonNull Task<Void> task) {
-                                    //if all ok
-                                    if (task.isSuccessful()) {
-                                        //destroy progress dialog
+                                    if(task.isSuccessful())
+                                    {
                                         pd.dismiss();
-
-                                        //go to MainActivity after register
                                         Intent intent = new Intent(RegisterActivity.this, MainActivity.class);
-                                        //Don't go back
                                         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
                                         startActivity(intent);
                                     }
                                 }
                             });
-                        }//if (task.isSuccessful())   --> End
-                        // Something wrong
-                        else {
-                            pd.dismiss();
-                            Toast.makeText(RegisterActivity.this, "You can't register with this email or password...", Toast.LENGTH_SHORT).show();
+
+
                         }
+                        else
+                        {
+                            pd.dismiss();
+                            Toast.makeText(RegisterActivity.this, "You can't register with this email or password.", Toast.LENGTH_SHORT).show();
+                        }
+
                     }
                 });
     }

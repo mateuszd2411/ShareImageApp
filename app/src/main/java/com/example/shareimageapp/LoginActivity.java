@@ -1,9 +1,10 @@
 package com.example.shareimageapp;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+
 import android.app.ProgressDialog;
 import android.content.Intent;
-import android.support.annotation.NonNull;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
@@ -24,7 +25,6 @@ import com.google.firebase.database.ValueEventListener;
 
 public class LoginActivity extends AppCompatActivity {
 
-    //views
     EditText email, password;
     Button login;
     TextView txt_signup;
@@ -36,15 +36,13 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        //init views from activity_login
         email = findViewById(R.id.email);
-        password = findViewById(R.id.password);
         login = findViewById(R.id.login);
+        password = findViewById(R.id.password);
         txt_signup = findViewById(R.id.txt_signup);
 
         auth = FirebaseAuth.getInstance();
 
-        //go to RegisterActivity
         txt_signup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -55,67 +53,52 @@ public class LoginActivity extends AppCompatActivity {
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //progress dialog
                 final ProgressDialog pd = new ProgressDialog(LoginActivity.this);
                 pd.setMessage("Please wait...");
                 pd.show();
 
-                //get info from edit text
                 String str_email = email.getText().toString();
                 String str_password = password.getText().toString();
 
-                //validations
-                if (TextUtils.isEmpty(str_email) || TextUtils.isEmpty(str_password)) {
-                    Toast.makeText(LoginActivity.this, "All fields are require...", Toast.LENGTH_SHORT).show();
-                }
-                //we have info from edit text
-                else {
-                    //logic for login user
+                if(TextUtils.isEmpty(str_email) || TextUtils.isEmpty(str_password)){
+                    Toast.makeText(LoginActivity.this, "All files are required!", Toast.LENGTH_SHORT).show();
+                }else
+                {
                     auth.signInWithEmailAndPassword(str_email, str_password)
-                            .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                            .addOnCompleteListener(LoginActivity.this, new OnCompleteListener<AuthResult>() {
                                 @Override
                                 public void onComplete(@NonNull Task<AuthResult> task) {
-                                    //if all is ok
-                                    if (task.isSuccessful()) {
-
-                                        //go to "folder" i realtime database to get user info
-                                        DatabaseReference reference = FirebaseDatabase.getInstance()
-                                                .getReference("UsersApp")
+                                    if(task.isSuccessful()){
+                                        DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("Users")
                                                 .child(auth.getCurrentUser().getUid());
 
-                                        //get user info from realtime database --> UsersApp
                                         reference.addValueEventListener(new ValueEventListener() {
                                             @Override
-                                            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                                                //destroy progress dialog
+                                            public void onDataChange(DataSnapshot dataSnapshot) {
                                                 pd.dismiss();
-
-                                                //after login go to MainActivity
                                                 Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-                                                //Don't go back
-                                                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+                                                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                                                 startActivity(intent);
                                                 finish();
                                             }
 
                                             @Override
-                                            public void onCancelled(@NonNull DatabaseError databaseError) {
+                                            public void onCancelled(DatabaseError databaseError) {
                                                 pd.dismiss();
                                             }
                                         });
-
-                                    }//END --> if (task.isSuccessful())  
-                                    else {
-                                        //something wrong
+                                    }
+                                    else
+                                    {
                                         pd.dismiss();
-                                        Toast.makeText(LoginActivity.this, "Authentication failed...", Toast.LENGTH_SHORT).show();
-                                    } 
+                                        Toast.makeText(LoginActivity.this, "Authentication failed!", Toast.LENGTH_SHORT).show();
+                                    }
                                 }
                             });
                 }
 
-
             }
         });
+
     }
 }
