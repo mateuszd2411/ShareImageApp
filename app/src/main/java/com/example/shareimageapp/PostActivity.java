@@ -97,10 +97,10 @@ public class PostActivity extends AppCompatActivity {
                     + "." + getFileExtension(imageUri));
 
             uploadTask = filereference.putFile(imageUri);
-            uploadTask.continueWith(new Continuation() {
+            uploadTask.continueWithTask(new Continuation() {
                 @Override
                 public Object then(@NonNull Task task) throws Exception {
-                    if (task.isSuccessful()) {
+                    if (!task.isSuccessful()) {
                         throw task.getException();
                     }
                     return filereference.getDownloadUrl();
@@ -136,6 +136,7 @@ public class PostActivity extends AppCompatActivity {
                     } else {
                         //display message when something wrong
                         Toast.makeText(PostActivity.this, "Failed...", Toast.LENGTH_SHORT).show();
+                        progressDialog.dismiss();
                     }
                 }
             }).addOnFailureListener(new OnFailureListener() {
@@ -143,10 +144,12 @@ public class PostActivity extends AppCompatActivity {
                 public void onFailure(@NonNull Exception e) {
                     //something wrong with realtime database
                     Toast.makeText(PostActivity.this, "" + e.getMessage(), Toast.LENGTH_SHORT).show();
+                    progressDialog.dismiss();
                 }
             });
         } else {
             Toast.makeText(this, "No Image selected...", Toast.LENGTH_SHORT).show();
+            progressDialog.dismiss();
         } //logic for posting END
 
     }
