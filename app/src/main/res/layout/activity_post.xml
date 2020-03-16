@@ -34,7 +34,7 @@
                     android:id="@+id/post"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="POST"
+                    android:text="@string/post"
                     android:textSize="16sp"
                     android:layout_marginEnd="10dp"
                     android:layout_centerVertical="true"
@@ -66,7 +66,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
-            android:hint="Description"
+            android:hint="@string/description"
             android:maxLines="5" />
 
     </LinearLayout>

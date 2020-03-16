@@ -21,7 +21,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/edittext_background"
-        android:hint="Username"
+        android:hint="@string/username"
         android:layout_marginTop="15dp"
         android:id="@+id/username"
         android:padding="10dp"/>
@@ -30,7 +30,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/edittext_background"
-        android:hint="Full Name"
+        android:hint="@string/full_name"
         android:layout_marginTop="15dp"
         android:id="@+id/fullname"
         android:padding="10dp"/>
@@ -39,7 +39,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/edittext_background"
-        android:hint="Email"
+        android:hint="@string/email"
         android:inputType="textEmailAddress"
         android:layout_marginTop="15dp"
         android:id="@+id/email"
@@ -49,7 +49,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/edittext_background"
-        android:hint="Password"
+        android:hint="@string/password"
         android:inputType="textPassword"
         android:layout_marginTop="15dp"
         android:id="@+id/password"
@@ -60,7 +60,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/register"
-        android:text="Register"
+        android:text="@string/register"
         android:textColor="@color/colorPrimary"
         android:background="@drawable/button_background"
         android:layout_marginTop="15dp"/>
@@ -68,7 +68,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Already have an account? Log In"
+        android:text="@string/already_have_an_account_log_in"
         android:id="@+id/txt_login"
         android:layout_marginTop="10dp"/>
 

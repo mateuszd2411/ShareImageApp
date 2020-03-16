@@ -22,7 +22,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/edittext_background"
-        android:hint="Email"
+        android:hint="@string/email"
         android:inputType="textEmailAddress"
         android:layout_marginTop="15dp"
         android:id="@+id/email"
@@ -32,7 +32,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/edittext_background"
-        android:hint="Password"
+        android:hint="@string/password"
         android:inputType="textPassword"
         android:layout_marginTop="15dp"
         android:id="@+id/password"
@@ -43,7 +43,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/login"
-        android:text="Login"
+        android:text="@string/login"
         android:textColor="@color/colorPrimary"
         android:background="@drawable/button_background"
         android:layout_marginTop="15dp"/>
@@ -51,7 +51,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Don't have an account? Sign up"
+        android:text="@string/don_t_have_an_account_sign_up"
         android:id="@+id/txt_signup"
         android:layout_marginTop="10dp"/>
 
