@@ -49,7 +49,7 @@
         tools:ignore="SmallSp" />
 
     <Button
-        android:id="@+id/changeLanguage"
+        android:id="@+id/change_anguage"
         android:layout_width="wrap_content"
         android:layout_height="20dp"
         android:textSize="10sp"

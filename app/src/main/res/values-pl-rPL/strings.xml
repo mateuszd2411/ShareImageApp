@@ -3,11 +3,11 @@
     <string name="app_name">ShareImageApp</string>
     <string name="email">Email</string>
     <string name="password">Hasło</string>
-    <string name="login">Login</string>
+    <string name="login">Zaloguj się</string>
     <string name="don_t_have_an_account_sign_up">Nie masz konta? Zarejestruj się</string>
-    <string name="post">POST</string>
+    <string name="post">Wyślij Post</string>
     <string name="description">Opis</string>
-    <string name="username">Nazwa użytkownika</string>
+    <string name="username">Nazwa Użytkownika</string>
     <string name="full_name">Imię</string>
     <string name="register">Rejestracja</string>
     <string name="already_have_an_account_log_in">Już masz konto? Zaloguj się</string>
