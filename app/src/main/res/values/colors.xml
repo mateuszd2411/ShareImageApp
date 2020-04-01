@@ -4,4 +4,11 @@
     <color name="colorPrimaryDark">#403d3d</color>
     <color name="colorAccent">#c2bdbf</color>
     <color name="colorBlack">#000000</color>
+
+    <color name="colorGray">#686868</color>
+    <color name="colorWhite">#fff</color>
+    <color name="colorCard">#4BDBE4C8</color>
+    <color name="colorCardDark">#858585</color>
+    <color name="colorTint">#9F9F9F</color>
+    <color name="colorTintDark">#535353</color>
 </resources>
