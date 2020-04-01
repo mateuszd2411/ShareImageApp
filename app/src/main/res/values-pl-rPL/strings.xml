@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">ShareImageApp</string>
+    <string name="email">Email</string>
+    <string name="password">Hasło</string>
+    <string name="login">Login</string>
+    <string name="don_t_have_an_account_sign_up">Nie masz konta? Zarejestruj się</string>
+    <string name="post">POST</string>
+    <string name="description">Opis</string>
+    <string name="username">Nazwa użytkownika</string>
+    <string name="full_name">Imię</string>
+    <string name="register">Rejestracja</string>
+    <string name="already_have_an_account_log_in">Już masz konto? Zaloguj się</string>
+    <string name="log_in">Zaloguj się</string>
+    <string name="search">Szukaj…</string>
+    <string name="view_all_20_comments">Zobacz komentarze</string>
+</resources>
