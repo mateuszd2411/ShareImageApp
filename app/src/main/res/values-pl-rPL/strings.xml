@@ -16,4 +16,5 @@
     <string name="view_all_20_comments">Zobacz komentarze</string>
     <string name="change_theme_dark_light">Zmień motyw Ciemny/Jasny</string>
     <string name="change_language">Zmień język</string>
+    <string name="enable_dark_mode">Włącz Ciemny Motyw</string>
 </resources>

@@ -27,26 +27,23 @@
         />
 
     <Button
+        android:id="@+id/register"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/register"
-        android:id="@+id/register"
         android:layout_marginTop="15dp"
+        android:layout_marginBottom="15dp"
         android:textColor="@color/colorPrimary"
         android:background="@drawable/button_background"
         />
 
-    <Button
-        android:id="@+id/changeTheme"
-        android:layout_width="wrap_content"
-        android:layout_height="20dp"
-        android:textSize="10sp"
-        android:padding="2dp"
-        android:text="@string/change_theme_dark_light"
-        android:layout_marginTop="30dp"
-        android:textColor="@color/colorPrimary"
-        android:background="@drawable/button_background"
-        tools:ignore="SmallSp" />
+    <androidx.appcompat.widget.SwitchCompat
+        android:id="@+id/darkModeSwitch"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="@string/enable_dark_mode"
+        />
 
     <Button
         android:id="@+id/change_anguage"
@@ -55,7 +52,7 @@
         android:textSize="10sp"
         android:padding="2dp"
         android:text="@string/change_language"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="10dp"
         android:textColor="@color/colorPrimary"
         android:background="@drawable/button_background"
         tools:ignore="SmallSp" />
