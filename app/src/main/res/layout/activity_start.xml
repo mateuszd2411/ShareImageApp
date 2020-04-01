@@ -9,6 +9,7 @@
     android:orientation="vertical"
     android:gravity="center"
     android:padding="12dp"
+    android:background="?attr/backgroundColor"
     tools:context=".StartActivity">
 
     <ImageView
@@ -42,6 +43,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
+        android:textColor="?attr/textColor"
         android:text="@string/enable_dark_mode"
         />
 

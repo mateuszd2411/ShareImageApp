@@ -8,6 +8,7 @@
     tools:context=".RegisterActivity"
     android:orientation="vertical"
     android:padding="10dp"
+    android:background="?attr/backgroundColor"
     android:gravity="center">
 
 
@@ -70,6 +71,7 @@
         android:layout_height="wrap_content"
         android:text="@string/already_have_an_account_log_in"
         android:id="@+id/txt_login"
+        android:textColor="?attr/textColor"
         android:layout_marginTop="10dp"/>
 
 

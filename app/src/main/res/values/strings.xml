@@ -17,4 +17,5 @@
     <string name="change_theme_dark_light">Change theme Dark/Light</string>
     <string name="change_language">Change Language</string>
     <string name="enable_dark_mode">Enable Dark Mode</string>
+    <string name="cantRegister">You can\'t register with this email or password.</string>
 </resources>

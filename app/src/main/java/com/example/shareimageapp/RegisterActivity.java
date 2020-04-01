@@ -2,6 +2,7 @@ package com.example.shareimageapp;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
@@ -35,6 +36,15 @@ public class RegisterActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        ////////////////////////////////////////////For Dark Theme
+
+        if (AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES) {
+            setTheme(R.style.darkTheme);
+        } else {
+            setTheme(R.style.AppTheme);
+        }
+
+        ////////////////////////////////////////////For Dark Theme
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
@@ -124,7 +134,7 @@ public class RegisterActivity extends AppCompatActivity {
                         else
                         {
                             pd.dismiss();
-                            Toast.makeText(RegisterActivity.this, "You can't register with this email or password.", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(RegisterActivity.this, R.string.cantRegister, Toast.LENGTH_SHORT).show();
                         }
 
                     }

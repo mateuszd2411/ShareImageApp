@@ -24,7 +24,7 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
-        <item name="backgroundColor">@color/colorBlack</item>
+        <item name="backgroundColor">@color/colorBg</item>
         <item name="cardBackground">@color/colorCardDark</item>
         <item name="textColor">@color/colorWhite</item>
         <item name="tintColor">@color/colorTintDark</item>

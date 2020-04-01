@@ -8,6 +8,7 @@
     tools:context=".LoginActivity"
     android:orientation="vertical"
     android:padding="10dp"
+    android:background="?attr/backgroundColor"
     android:gravity="center">
 
 
@@ -52,6 +53,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/don_t_have_an_account_sign_up"
+        android:textColor="?attr/textColor"
         android:id="@+id/txt_signup"
         android:layout_marginTop="10dp"/>
 

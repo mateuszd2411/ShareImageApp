@@ -2,6 +2,8 @@ package com.example.shareimageapp;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
+import androidx.appcompat.widget.SwitchCompat;
 
 import android.app.Activity;
 import android.content.DialogInterface;
@@ -11,6 +13,7 @@ import android.content.res.Configuration;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CompoundButton;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -21,12 +24,14 @@ public class StartActivity extends AppCompatActivity {
 
     Button login, register, changeLang;
 
+    ////////////////////////////////////////////For Dark Theme
+    SwitchCompat darkModeSwitch;
+
     FirebaseUser firebaseUser;
 
     @Override
     protected void onStart() {
         super.onStart();
-
         firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
 
         if(firebaseUser !=null){
@@ -38,13 +43,42 @@ public class StartActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        ////////////////////////////////////////////For Dark Theme
+
+        if (AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES) {
+            setTheme(R.style.darkTheme);
+        } else {
+            setTheme(R.style.AppTheme);
+        }
+
+        ////////////////////////////////////////////For Dark Theme
         super.onCreate(savedInstanceState);
         loadLocale();   //for language
         setContentView(R.layout.activity_start);
 
+        //init views
         login = findViewById(R.id.login);
         register = findViewById(R.id.register);
         changeLang = findViewById(R.id.change_anguage);
+        darkModeSwitch = findViewById(R.id.darkModeSwitch);
+
+        //validation for switching to dark mode theme
+        if (AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES) {
+            darkModeSwitch.setChecked(true);
+        }
+
+        darkModeSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean isChecked) {
+                if (isChecked) {
+                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+                    restartApp();
+                } else {
+                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+                    restartApp();
+                }
+            }
+        });
 
         login.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -70,6 +104,13 @@ public class StartActivity extends AppCompatActivity {
         });
     }// onCreate END
 
+    ////////////////////////////////////////////For Dark Theme
+    private void restartApp() {
+        Intent intent = new Intent(getApplicationContext(), StartActivity.class);
+        startActivity(intent);
+        finish();
+    }
+
     //For change language
     private void showChangeLanguageDialog() {
         //array of language to display in alert dialog
@@ -84,11 +125,13 @@ public class StartActivity extends AppCompatActivity {
                     //Polski
                     setLocale("pl");
                     recreate();
+                    restartApp();
                 }
                 if (i == 1) {
                     //English
                     setLocale("en");
                     recreate();
+                    restartApp();
                 }
 
                 //dismiss alert dialog when language selected
@@ -108,15 +151,15 @@ public class StartActivity extends AppCompatActivity {
         getBaseContext().getResources().updateConfiguration(configuration, getBaseContext().getResources().getDisplayMetrics());
 
         //save data to share preferences
-        SharedPreferences.Editor editor = getSharedPreferences("Settings", MODE_PRIVATE).edit();
-        editor.putString("My_Lang", lang);
+        SharedPreferences.Editor editor = getSharedPreferences("Settings123456789", MODE_PRIVATE).edit();
+        editor.putString("My_Lang123456789", lang);
         editor.apply();
     }
 
     //load language saved in share preferences
     private void loadLocale() {
-        SharedPreferences prefs = getSharedPreferences("Settings", Activity.MODE_PRIVATE);
-        String language = prefs.getString("My_Lang", "");
+        SharedPreferences prefs = getSharedPreferences("Settings123456789", Activity.MODE_PRIVATE);
+        String language = prefs.getString("My_Lang123456789", "");
         setLocale(language);
     }
 }
