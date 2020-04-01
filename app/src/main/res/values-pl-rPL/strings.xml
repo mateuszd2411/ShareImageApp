@@ -14,4 +14,6 @@
     <string name="log_in">Zaloguj się</string>
     <string name="search">Szukaj…</string>
     <string name="view_all_20_comments">Zobacz komentarze</string>
+    <string name="change_theme_dark_light">Zmień motyw Ciemny/Jasny</string>
+    <string name="change_language">Zmień język</string>
 </resources>

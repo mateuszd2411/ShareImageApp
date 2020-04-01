@@ -14,4 +14,6 @@
     <string name="log_in">Log in</string>
     <string name="search">Search…</string>
     <string name="view_all_20_comments">View All 20 Comments</string>
+    <string name="change_theme_dark_light">Change theme Dark/Light</string>
+    <string name="change_language">Change Language</string>
 </resources>
