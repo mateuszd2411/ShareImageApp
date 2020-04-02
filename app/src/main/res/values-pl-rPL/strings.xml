@@ -24,4 +24,5 @@
     <string name="LoggedSuccessfully">Zalogowano Pomyślnie…</string>
     <string name="Failed">Błąd…</string>
     <string name="NoImageselected">Nie wybrano zdjęcia…</string>
+    <string name="Passwordmusthave6characters">Hasło musi mieć więcej niż 6 znaków…</string>
 </resources>

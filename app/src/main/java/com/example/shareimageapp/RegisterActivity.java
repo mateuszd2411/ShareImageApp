@@ -24,6 +24,8 @@ import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.HashMap;
 
+import es.dmoral.toasty.Toasty;
+
 public class RegisterActivity extends AppCompatActivity {
 
     EditText username, fullname, email, password;
@@ -70,7 +72,7 @@ public class RegisterActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 pd = new ProgressDialog(RegisterActivity.this);
-                pd.setMessage("Please wait...");
+                pd.setMessage(getString(R.string.Pleasewait));
                 pd.show();
 
                 String str_username = username.getText().toString();
@@ -82,11 +84,14 @@ public class RegisterActivity extends AppCompatActivity {
                 if(TextUtils.isEmpty(str_username) || TextUtils.isEmpty(str_fullname)
                        || TextUtils.isEmpty(str_email) || TextUtils.isEmpty(str_password))
                 {
-                    Toast.makeText(RegisterActivity.this, "All files are required!", Toast.LENGTH_SHORT).show();
+                    pd.dismiss();
+                    Toasty.info(RegisterActivity.this, R.string.Allfilesarerequired, Toast.LENGTH_LONG, true).show();
                 }else if (str_password.length() <6){
-                    Toast.makeText(RegisterActivity.this, "Password must have 6 characters.", Toast.LENGTH_SHORT).show();
+                    pd.dismiss();
+                    Toasty.info(RegisterActivity.this, R.string.Passwordmusthave6characters, Toast.LENGTH_LONG, true).show();
                 }else
                 {
+                    pd.dismiss();
                     register(str_username, str_fullname, str_email, str_password);
                 }
             }
@@ -104,6 +109,10 @@ public class RegisterActivity extends AppCompatActivity {
 
                         if(task.isSuccessful())
                         {
+                            final ProgressDialog pd = new ProgressDialog(RegisterActivity.this);
+                            pd.setMessage(getString(R.string.Pleasewait));
+                            pd.show();
+
                             FirebaseUser firebaseUser = auth.getCurrentUser();
                             String userid = firebaseUser.getUid();
 
@@ -122,6 +131,7 @@ public class RegisterActivity extends AppCompatActivity {
                                     if(task.isSuccessful())
                                     {
                                         pd.dismiss();
+                                        Toasty.success(RegisterActivity.this,R.string.LoggedSuccessfully, Toast.LENGTH_LONG, true).show();
                                         Intent intent = new Intent(RegisterActivity.this, MainActivity.class);
                                         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
                                         startActivity(intent);
@@ -134,7 +144,7 @@ public class RegisterActivity extends AppCompatActivity {
                         else
                         {
                             pd.dismiss();
-                            Toast.makeText(RegisterActivity.this, R.string.cantRegister, Toast.LENGTH_SHORT).show();
+                            Toasty.error(RegisterActivity.this,R.string.cantRegister, Toast.LENGTH_LONG, true).show();
                         }
 
                     }

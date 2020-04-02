@@ -24,4 +24,5 @@
     <string name="LoggedSuccessfully">Logged Successfully…</string>
     <string name="Failed">Failed…</string>
     <string name="NoImageselected">No Image selected…</string>
+    <string name="Passwordmusthave6characters">Password must have 6 characters…</string>
 </resources>
