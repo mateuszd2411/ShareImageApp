@@ -17,5 +17,11 @@
     <string name="change_theme_dark_light">Zmień motyw Ciemny/Jasny</string>
     <string name="change_language">Zmień język</string>
     <string name="enable_dark_mode">Włącz Ciemny Motyw</string>
-    <string name="cantRegister">NIe możesz się zalogować urzywając tego e-maila…</string>
+    <string name="cantRegister">Nie możesz się zalogować urzywając tego e-maila…</string>
+    <string name="Pleasewait">Proszę czekać…</string>
+    <string name="Authenticationfailed">Nieprawidłowe dane…</string>
+    <string name="Allfilesarerequired">Wypełnij wszystkie Pola…</string>
+    <string name="LoggedSuccessfully">Zalogowano Pomyślnie…</string>
+    <string name="Failed">Błąd…</string>
+    <string name="NoImageselected">Nie wybrano zdjęcia…</string>
 </resources>

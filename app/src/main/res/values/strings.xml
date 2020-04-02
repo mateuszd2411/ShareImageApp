@@ -18,4 +18,10 @@
     <string name="change_language">Change Language</string>
     <string name="enable_dark_mode">Enable Dark Mode</string>
     <string name="cantRegister">You can\'t register with this email or password.</string>
+    <string name="Pleasewait">Please wait…</string>
+    <string name="Authenticationfailed">Authentication failed!</string>
+    <string name="Allfilesarerequired">All files are required!</string>
+    <string name="LoggedSuccessfully">Logged Successfully…</string>
+    <string name="Failed">Failed…</string>
+    <string name="NoImageselected">No Image selected…</string>
 </resources>

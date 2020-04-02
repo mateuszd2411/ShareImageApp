@@ -3,6 +3,7 @@ package com.example.shareimageapp;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
+import androidx.core.content.res.ResourcesCompat;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
@@ -23,6 +24,8 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+
+import es.dmoral.toasty.Toasty;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -64,14 +67,16 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 final ProgressDialog pd = new ProgressDialog(LoginActivity.this);
-                pd.setMessage("Please wait...");
+                pd.setMessage(getString(R.string.Pleasewait));
                 pd.show();
 
                 String str_email = email.getText().toString();
                 String str_password = password.getText().toString();
 
                 if(TextUtils.isEmpty(str_email) || TextUtils.isEmpty(str_password)){
-                    Toast.makeText(LoginActivity.this, "All files are required!", Toast.LENGTH_SHORT).show();
+                    //Toasty
+                    Toasty.info(LoginActivity.this, R.string.Allfilesarerequired, Toast.LENGTH_LONG, true).show();
+                    pd.dismiss();
                 }else
                 {
                     auth.signInWithEmailAndPassword(str_email, str_password)
@@ -86,6 +91,8 @@ public class LoginActivity extends AppCompatActivity {
                                             @Override
                                             public void onDataChange(DataSnapshot dataSnapshot) {
                                                 pd.dismiss();
+                                                //Toasty
+                                                Toasty.success(LoginActivity.this, R.string.LoggedSuccessfully, Toast.LENGTH_LONG, true).show();
                                                 Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                                                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                                                 startActivity(intent);
@@ -94,6 +101,8 @@ public class LoginActivity extends AppCompatActivity {
 
                                             @Override
                                             public void onCancelled(DatabaseError databaseError) {
+                                                //Toasty
+                                                Toasty.error(LoginActivity.this, R.string.Authenticationfailed, Toast.LENGTH_LONG, true).show();
                                                 pd.dismiss();
                                             }
                                         });
@@ -101,7 +110,7 @@ public class LoginActivity extends AppCompatActivity {
                                     else
                                     {
                                         pd.dismiss();
-                                        Toast.makeText(LoginActivity.this, "Authentication failed!", Toast.LENGTH_SHORT).show();
+                                        Toasty.error(LoginActivity.this, R.string.Authenticationfailed, Toast.LENGTH_LONG, true).show();
                                     }
                                 }
                             });

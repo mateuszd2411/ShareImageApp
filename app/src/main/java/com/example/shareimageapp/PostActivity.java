@@ -30,6 +30,8 @@ import com.theartofdev.edmodo.cropper.CropImage;
 
 import java.util.HashMap;
 
+import es.dmoral.toasty.Toasty;
+
 public class PostActivity extends AppCompatActivity {
 
     Uri imageUri;
@@ -135,7 +137,7 @@ public class PostActivity extends AppCompatActivity {
                         finish();   //don't go back
                     } else {
                         //display message when something wrong
-                        Toast.makeText(PostActivity.this, "Failed...", Toast.LENGTH_SHORT).show();
+                        Toasty.error(PostActivity.this, R.string.Failed, Toast.LENGTH_LONG, true).show();
                         progressDialog.dismiss();
                     }
                 }
@@ -143,12 +145,12 @@ public class PostActivity extends AppCompatActivity {
                 @Override
                 public void onFailure(@NonNull Exception e) {
                     //something wrong with realtime database
-                    Toast.makeText(PostActivity.this, "" + e.getMessage(), Toast.LENGTH_SHORT).show();
+                    Toasty.error(PostActivity.this, R.string.Failed, Toast.LENGTH_LONG, true).show();
                     progressDialog.dismiss();
                 }
             });
         } else {
-            Toast.makeText(this, "No Image selected...", Toast.LENGTH_SHORT).show();
+            Toasty.warning(PostActivity.this, R.string.NoImageselected, Toast.LENGTH_LONG, true).show();
             progressDialog.dismiss();
         } //logic for posting END
 
@@ -167,7 +169,7 @@ public class PostActivity extends AppCompatActivity {
 
             image_added.setImageURI(imageUri);
         } else {
-            Toast.makeText(this, "Something gone wrong...", Toast.LENGTH_SHORT).show();
+            Toasty.error(PostActivity.this, R.string.Failed, Toast.LENGTH_LONG, true).show();
             startActivity(new Intent(PostActivity.this, MainActivity.class));
             finish();
         }

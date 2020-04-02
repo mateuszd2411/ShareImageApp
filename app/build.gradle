@@ -7,7 +7,7 @@ android {
     buildToolsVersion "29.0.2"
     defaultConfig {
         applicationId "com.example.instagram"
-        minSdkVersion 17
+        minSdkVersion 21
         targetSdkVersion 28
         versionCode 1
         versionName "1.0"
@@ -31,6 +31,8 @@ dependencies {
     implementation 'com.google.firebase:firebase-auth:19.3.1'
     implementation 'com.google.firebase:firebase-database:19.3.1'
     implementation 'com.google.firebase:firebase-storage:19.1.1'
+
+    implementation 'com.github.GrenderG:Toasty:1.4.2'
 
     implementation 'de.hdodenhof:circleimageview:3.1.0'
     implementation 'com.github.bumptech.glide:glide:4.11.0'
