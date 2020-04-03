@@ -27,4 +27,6 @@
     <string name="Passwordmusthave6characters">Password must have 6 characters…</string>
     <string name="add_a_comment">Add a comment…</string>
     <string name="POST">POST</string>
+    <string name="Comments">Comments</string>
+    <string name="canysendemptycomment">You can\'t send empty comment…</string>
 </resources>

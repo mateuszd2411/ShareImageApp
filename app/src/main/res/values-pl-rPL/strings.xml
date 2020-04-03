@@ -27,4 +27,6 @@
     <string name="Passwordmusthave6characters">Hasło musi mieć więcej niż 6 znaków…</string>
     <string name="add_a_comment">Dodaj komentarz…</string>
     <string name="POST">Wyslij</string>
+    <string name="Comments">Komentarze</string>
+    <string name="canysendemptycomment">Nie możesz wysłać pustego komentarza…</string>
 </resources>
