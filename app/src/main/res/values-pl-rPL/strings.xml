@@ -25,4 +25,6 @@
     <string name="Failed">Błąd…</string>
     <string name="NoImageselected">Nie wybrano zdjęcia…</string>
     <string name="Passwordmusthave6characters">Hasło musi mieć więcej niż 6 znaków…</string>
+    <string name="add_a_comment">Dodaj komentarz…</string>
+    <string name="POST">Wyslij</string>
 </resources>

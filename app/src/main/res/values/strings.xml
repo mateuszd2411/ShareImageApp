@@ -25,4 +25,6 @@
     <string name="Failed">Failed…</string>
     <string name="NoImageselected">No Image selected…</string>
     <string name="Passwordmusthave6characters">Password must have 6 characters…</string>
+    <string name="add_a_comment">Add a comment…</string>
+    <string name="POST">POST</string>
 </resources>
