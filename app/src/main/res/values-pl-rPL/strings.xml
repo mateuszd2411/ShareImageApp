@@ -1,6 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
     <string name="app_name">ShareImageApp</string>
+
+    <!--    Realtime Database Firebase-->
+    <string name="DB_Comments">Comments</string>
+    <string name="DBPosts">Posts</string>
+
+    <string name="SDBPosts">Posts</string>
+    <!--    Realtime Database Firebase-->
+
+    <!--    StringExtra -->
+    <string name="StringExtrapostid">postid</string>
+    <!--    StringExtra -->
+
+    <!--    Translate-->
     <string name="email">Email</string>
     <string name="password">Hasło</string>
     <string name="login">Zaloguj się</string>
@@ -29,4 +43,5 @@
     <string name="POST">Wyslij</string>
     <string name="Comments">Komentarze</string>
     <string name="canysendemptycomment">Nie możesz wysłać pustego komentarza…</string>
+    <string name="Posting">Wysyła…</string>
 </resources>

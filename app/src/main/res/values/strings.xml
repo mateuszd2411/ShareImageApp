@@ -1,6 +1,21 @@
 <resources>
+
     <string name="app_name">ShareImageApp</string>
 
+    <!--    Database Firebase-->
+    <!--    BD ==> Realtime Database    -->
+    <!--    SBD ==>  Storage Database    -->
+    <string name="DB_Comments">Comments</string>
+    <string name="DBPosts">Posts</string>
+
+    <string name="SDBPosts">Posts</string>
+    <!--    Realtime Database Firebase-->
+
+    <!--    StringExtra -->
+    <string name="StringExtrapostid">postid</string>
+    <!--    StringExtra -->
+
+    <!--    Translate-->
     <string name="email">Email</string>
     <string name="password">Password</string>
     <string name="login">Login</string>
@@ -29,4 +44,5 @@
     <string name="POST">POST</string>
     <string name="Comments">Comments</string>
     <string name="canysendemptycomment">You can\'t send empty comment…</string>
+    <string name="Posting">Posting…</string>
 </resources>

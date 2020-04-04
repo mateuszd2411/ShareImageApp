@@ -13,6 +13,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
+import java.util.HashMap;
 
 import es.dmoral.toasty.Toasty;
 
@@ -60,7 +64,7 @@ public class CommentsActivity extends AppCompatActivity {
 
         //need postid, publisherid
         Intent intent = getIntent();
-        postid = intent.getStringExtra("postid");
+        postid = intent.getStringExtra(getString(R.string.StringExtrapostid));
         publisherid = intent.getStringExtra("publisherid");
 
         //post/send comment button clickable
@@ -73,8 +77,22 @@ public class CommentsActivity extends AppCompatActivity {
                     Toasty.info(CommentsActivity.this, R.string.canysendemptycomment, Toast.LENGTH_LONG, true).show();
                 }else {
                     //add comment logic
+                    addComment();
                 }
             }
         });
+    }//onCreate
+
+    private void addComment() {
+        //go to "Comments" in realtime database firebase
+        DatabaseReference reference = FirebaseDatabase.getInstance().getReference(getString(R.string.DB_Comments)).child(postid);
+
+        HashMap<String, Object> hashMap = new HashMap<>();
+        hashMap.put("comment", addcomment.getText().toString());
+        hashMap.put("publisher", firebaseUser.getUid());
+
+        reference.push().setValue(hashMap);
+        //after all set empty
+        addcomment.setText("");
     }
 }

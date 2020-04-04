@@ -56,7 +56,7 @@ public class PostActivity extends AppCompatActivity {
         description = findViewById(R.id.description);
 
         //create folder "Posts" in FirebaseStorage
-        storageReference = FirebaseStorage.getInstance().getReference("Posts");
+        storageReference = FirebaseStorage.getInstance().getReference(getString(R.string.SDBPosts));
 
         //clickable close button, go to MainActivity
         close.setOnClickListener(new View.OnClickListener() {
@@ -90,7 +90,7 @@ public class PostActivity extends AppCompatActivity {
     private void uploadImage() {
         //progress dialog while posting
         final ProgressDialog progressDialog = new ProgressDialog(this);
-        progressDialog.setMessage("Posting");
+        progressDialog.setMessage(getString(R.string.Posting));
         progressDialog.show();
 
         //logic for posting
@@ -116,7 +116,7 @@ public class PostActivity extends AppCompatActivity {
                         myUrl = downloadUri.toString();
 
                         //go to/make folder i realtime database
-                        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Posts");
+                        DatabaseReference reference = FirebaseDatabase.getInstance().getReference(getString(R.string.DBPosts));
 
                         //get key for make postid
                         String postid = reference.push().getKey();
