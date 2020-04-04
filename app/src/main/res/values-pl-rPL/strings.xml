@@ -6,9 +6,10 @@
     <!--    Realtime Database Firebase-->
     <string name="DB_Comments">Comments</string>
     <string name="DBPosts">Posts</string>
+    <string name="DBUsers">Users</string>
 
     <string name="SDBPosts">Posts</string>
-    <!--    Realtime Database Firebase-->
+    <!--    Realtime Database Firebase EDN-->
 
     <!--    StringExtra -->
     <string name="StringExtrapostid">postid</string>
