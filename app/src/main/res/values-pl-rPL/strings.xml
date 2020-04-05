@@ -45,4 +45,6 @@
     <string name="Comments">Komentarze</string>
     <string name="canysendemptycomment">Nie możesz wysłać pustego komentarza…</string>
     <string name="Posting">Wysyła…</string>
+    <string name="ViewAllComments">Zobacz wszystkie </string>
+    <string name="_Comments"> Komentarze</string>
 </resources>

@@ -46,4 +46,6 @@
     <string name="Comments">Comments</string>
     <string name="canysendemptycomment">You can\'t send empty comment…</string>
     <string name="Posting">Posting…</string>
+    <string name="ViewAllComments">View All </string>
+    <string name="_Comments"> Comments</string>
 </resources>

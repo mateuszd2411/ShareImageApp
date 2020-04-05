@@ -15,6 +15,7 @@ import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.example.shareimageapp.Model.User;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -67,6 +68,8 @@ public class CommentsActivity extends AppCompatActivity {
         addcomment = findViewById(R.id.add_comment);
         image_profile = findViewById(R.id.image_profile);
         post = findViewById(R.id.post);
+
+        firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
 
         //need postid, publisherid
         Intent intent = getIntent();
