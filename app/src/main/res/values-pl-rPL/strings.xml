@@ -7,6 +7,7 @@
     <string name="DB_Comments">Comments</string>
     <string name="DBPosts">Posts</string>
     <string name="DBUsers">Users</string>
+    <string name="DBLikes">Likes</string>
 
     <string name="SDBPosts">Posts</string>
     <!--    Realtime Database Firebase EDN-->
@@ -45,6 +46,7 @@
     <string name="Comments">Komentarze</string>
     <string name="canysendemptycomment">Nie możesz wysłać pustego komentarza…</string>
     <string name="Posting">Wysyła…</string>
-    <string name="ViewAllComments">Zobacz wszystkie </string>
-    <string name="_Comments"> Komentarze</string>
+    <string name="ViewAllComments">Zobacz wszystkie\u0020</string>  <!--   \u0020 Space-->
+    <string name="_Comments">\u0020Komentarze</string>
+    <string name="_likes">\u0020polubień</string>
 </resources>

@@ -1,7 +1,9 @@
 package com.example.shareimageapp.Adapter;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Build;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,6 +11,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
@@ -140,11 +143,15 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
                 .child(String.valueOf(R.string.DB_Comments)).child(postid);
 
         reference.addValueEventListener(new ValueEventListener() {
+            @SuppressLint("SetTextI18n")
+            @RequiresApi(api = Build.VERSION_CODES.N)
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 //set text counting comments in Post
-                comments.setText((int) (R.string.ViewAllComments + dataSnapshot.getChildrenCount() + R.string._Comments));
+                comments.setText(mContext.getString(R.string.ViewAllComments)
+                        + dataSnapshot.getChildrenCount()+ mContext.getString(R.string._Comments));
             }
+
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
@@ -186,14 +193,15 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
 
     private void nrLikes(final TextView likes, String postid){
         //go to "postid" in "Likes"
-        DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("Likes")
+        DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child(mContext.getString(R.string.DBLikes))
                 .child(postid);
 
         reference.addValueEventListener(new ValueEventListener() {
+            @SuppressLint("SetTextI18n")
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 //getChildrenCount for the like counting
-                likes.setText(dataSnapshot.getChildrenCount()+" likes");
+                likes.setText(dataSnapshot.getChildrenCount()+mContext.getString(R.string._likes));
             }
 
             @Override
@@ -207,7 +215,7 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
     //send publisherInfo to realtime database
     private void publisherInfo(final ImageView image_profile, final TextView username, final TextView publisher, String userid){
        //Go to "Users" in realtime database
-        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Users").child(userid);
+        DatabaseReference reference = FirebaseDatabase.getInstance().getReference(mContext.getString(R.string.DBUsers)).child(userid);
 
         reference.addValueEventListener(new ValueEventListener() {
             @Override

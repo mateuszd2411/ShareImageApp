@@ -96,7 +96,7 @@
             android:layout_marginStart="8dp"
             android:layout_marginBottom="10dp"
             android:textStyle="bold"
-            android:text="@string/view_all_20_comments"
+            android:text=""
             android:textColor="@color/colorAccent"/>
 
     </LinearLayout>

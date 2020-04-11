@@ -26,6 +26,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.StorageTask;
+import com.google.firebase.storage.UploadTask;
 import com.theartofdev.edmodo.cropper.CropImage;
 
 import java.util.HashMap;
@@ -99,17 +100,17 @@ public class PostActivity extends AppCompatActivity {
                     + "." + getFileExtension(imageUri));
 
             uploadTask = filereference.putFile(imageUri);
-            uploadTask.continueWithTask(new Continuation() {
+            uploadTask.continueWithTask(new Continuation<UploadTask.TaskSnapshot, Task<Uri>>() {
                 @Override
-                public Object then(@NonNull Task task) throws Exception {
+                public Task<Uri> then(@NonNull Task<UploadTask.TaskSnapshot> task) throws Exception {
                     if (!task.isSuccessful()) {
                         throw task.getException();
                     }
                     return filereference.getDownloadUrl();
                 }
-            }).addOnCompleteListener(new OnCompleteListener() {
+            }).addOnCompleteListener(new OnCompleteListener<Uri>() {
                 @Override
-                public void onComplete(@NonNull Task task) {
+                public void onComplete(@NonNull Task<Uri> task) {
                     //when all is good
                     if (task.isSuccessful()) {
                         Uri downloadUri = (Uri) task.getResult();
@@ -158,7 +159,7 @@ public class PostActivity extends AppCompatActivity {
 
     //for Crop Image
     @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
         //validation (all good with choose picture)
