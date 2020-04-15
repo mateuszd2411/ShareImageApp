@@ -20,11 +20,20 @@ import com.google.firebase.auth.FirebaseUser;
 
 import java.util.Locale;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 public class StartActivity extends AppCompatActivity {
 
-    Button login, register, changeLang;
+    @BindView(R.id.login)
+    Button login;
+    @BindView(R.id.register)
+    Button register;
+    @BindView(R.id.change_language)
+    Button changeLang;
 
     ////////////////////////////////////////////For Dark Theme
+    @BindView(R.id.darkModeSwitch)
     SwitchCompat darkModeSwitch;
 
     FirebaseUser firebaseUser;
@@ -57,10 +66,7 @@ public class StartActivity extends AppCompatActivity {
         setContentView(R.layout.activity_start);
 
         //init views
-        login = findViewById(R.id.login);
-        register = findViewById(R.id.register);
-        changeLang = findViewById(R.id.change_anguage);
-        darkModeSwitch = findViewById(R.id.darkModeSwitch);
+        ButterKnife.bind(this);
 
         //validation for switching to dark mode theme
         if (AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES) {

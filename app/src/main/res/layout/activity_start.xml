@@ -48,7 +48,7 @@
         />
 
     <Button
-        android:id="@+id/change_anguage"
+        android:id="@+id/change_language"
         android:layout_width="wrap_content"
         android:layout_height="20dp"
         android:textSize="10sp"

@@ -31,6 +31,8 @@ import com.theartofdev.edmodo.cropper.CropImage;
 
 import java.util.HashMap;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
 import es.dmoral.toasty.Toasty;
 
 public class PostActivity extends AppCompatActivity {
@@ -41,8 +43,13 @@ public class PostActivity extends AppCompatActivity {
     StorageReference storageReference;
 
     //views from activity_post.xml
-    ImageView close, image_added;
+    @BindView(R.id.close)
+    ImageView close;
+    @BindView(R.id.image_added)
+    ImageView image_added;
+    @BindView(R.id.post)
     TextView post;
+    @BindView(R.id.description)
     EditText description;
 
     @Override
@@ -50,11 +57,8 @@ public class PostActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_post);
 
-        //init views
-        close = findViewById(R.id.close);
-        image_added = findViewById(R.id.image_added);
-        post = findViewById(R.id.post);
-        description = findViewById(R.id.description);
+        //bind the current view
+        ButterKnife.bind(this);
 
         //create folder "Posts" in FirebaseStorage
         storageReference = FirebaseStorage.getInstance().getReference(getString(R.string.SDBPosts));

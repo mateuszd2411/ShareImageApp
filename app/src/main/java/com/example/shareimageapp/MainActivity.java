@@ -16,19 +16,23 @@ import com.example.shareimageapp.Fragment.SearchFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 public class MainActivity extends AppCompatActivity {
 
-    BottomNavigationView bottomNavigationView;
     Fragment selectedFragment = null;
 
-
+    @BindView(R.id.bottom_navigation)
+    BottomNavigationView bottomNavigationView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        bottomNavigationView = findViewById(R.id.bottom_navigation);
+        //bind the current view
+        ButterKnife.bind(this);
 
         bottomNavigationView.setOnNavigationItemSelectedListener(navigationItemSelectedListener);
 

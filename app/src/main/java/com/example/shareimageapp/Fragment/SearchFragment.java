@@ -28,25 +28,31 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.List;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 
 public class SearchFragment extends Fragment {
 
-    private RecyclerView recyclerView;
+    //init views
+    @BindView(R.id.recycle_view)
+    RecyclerView recyclerView;
+    @BindView(R.id.search_bar)
+    EditText search_bar;
+
     private UserAdapter userAdapter;
     private List<User> mUsers;
-
-    EditText search_bar;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_search, container, false);
 
-        recyclerView = view.findViewById(R.id.recycle_view);
+        //bind the current view
+        ButterKnife.bind(this,view);
+
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-
-        search_bar = view.findViewById(R.id.search_bar);
 
         mUsers = new ArrayList<>();
         userAdapter = new UserAdapter(getContext(), mUsers);

@@ -25,12 +25,19 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.HashMap;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import de.hdodenhof.circleimageview.CircleImageView;
 import es.dmoral.toasty.Toasty;
 
 public class CommentsActivity extends AppCompatActivity {
 
+    //init views
+    @BindView(R.id.add_comment)
     EditText addcomment;
-    ImageView image_profile;
+    @BindView(R.id.image_profile)
+    CircleImageView image_profile;
+    @BindView(R.id.post)
     TextView post;
 
     String postid;
@@ -52,6 +59,9 @@ public class CommentsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_comments);
 
+        //bind the current view
+        ButterKnife.bind(this);
+
         //Toolbar
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -64,10 +74,6 @@ public class CommentsActivity extends AppCompatActivity {
                 finish();
             }
         });
-
-        addcomment = findViewById(R.id.add_comment);
-        image_profile = findViewById(R.id.image_profile);
-        post = findViewById(R.id.post);
 
         firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
 

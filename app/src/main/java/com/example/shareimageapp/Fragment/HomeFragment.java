@@ -14,6 +14,7 @@ import android.view.ViewGroup;
 import com.example.shareimageapp.Adapter.PostAdapter;
 import com.example.shareimageapp.Model.Post;
 import com.example.shareimageapp.R;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -24,9 +25,15 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.List;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 public class HomeFragment extends Fragment {
 
-    private RecyclerView recyclerView;
+    //init views
+    @BindView(R.id.recycle_view)
+    RecyclerView recyclerView;
+
     private PostAdapter postAdapter;
     private List<Post> postList;
 
@@ -38,8 +45,10 @@ public class HomeFragment extends Fragment {
 
         View view = inflater.inflate(R.layout.fragment_home, container, false);
 
+        //bind the current view
+        ButterKnife.bind(this,view);
+
         //recycler view
-        recyclerView = view.findViewById(R.id.recycle_view);
         recyclerView.setHasFixedSize(true);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
         linearLayoutManager.setReverseLayout(true);

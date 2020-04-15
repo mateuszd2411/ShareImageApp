@@ -25,12 +25,20 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
 import es.dmoral.toasty.Toasty;
 
 public class LoginActivity extends AppCompatActivity {
 
-    EditText email, password;
+    //init views
+    @BindView(R.id.email)
+    EditText email;
+    @BindView(R.id.password)
+    EditText password;
+    @BindView(R.id.login)
     Button login;
+    @BindView(R.id.txt_signup)
     TextView txt_signup;
 
     FirebaseAuth auth;
@@ -49,10 +57,8 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        email = findViewById(R.id.email);
-        login = findViewById(R.id.login);
-        password = findViewById(R.id.password);
-        txt_signup = findViewById(R.id.txt_signup);
+        //bind the current view
+        ButterKnife.bind(this);
 
         auth = FirebaseAuth.getInstance();
 

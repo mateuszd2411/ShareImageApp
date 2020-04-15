@@ -24,12 +24,23 @@ import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.HashMap;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
 import es.dmoral.toasty.Toasty;
 
 public class RegisterActivity extends AppCompatActivity {
 
-    EditText username, fullname, email, password;
+    @BindView(R.id.username)
+    EditText username;
+    @BindView(R.id.fullname)
+    EditText fullname;
+    @BindView(R.id.email)
+    EditText email;
+    @BindView(R.id.password)
+    EditText password;
+    @BindView(R.id.register)
     Button register;
+    @BindView(R.id.txt_login)
     TextView txt_login;
 
     FirebaseAuth auth;
@@ -51,13 +62,8 @@ public class RegisterActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
 
-        username = findViewById(R.id.username);
-        fullname = findViewById(R.id.fullname);
-        email = findViewById(R.id.email);
-        password = findViewById(R.id.password);
-        register = findViewById(R.id.register);
-        txt_login = findViewById(R.id.txt_login);
-
+        //bind the current views
+        ButterKnife.bind(this);
 
         auth = FirebaseAuth.getInstance();
 
