@@ -42,7 +42,7 @@ public class MainActivity extends AppCompatActivity {
             String publisher = intent.getString(String.valueOf(R.string.StringExtrapublisherid));
 
             SharedPreferences.Editor editor = getSharedPreferences("PREFS", MODE_PRIVATE).edit();
-            editor.putString(String.valueOf(R.string.StringExtrapublisherid), publisher);
+            editor.putString(String.valueOf(R.string.StringExtraprofileid), publisher);
 
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
                     new ProfileFragment()).commit();

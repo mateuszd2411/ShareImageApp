@@ -15,8 +15,8 @@
 
     <!--    StringExtra -->
     <string name="StringExtrapostid">postid</string>
-    <string name="StringExtrapublisherid">postid</string>
-    <string name="StringExtraprofileid">postid</string>
+    <string name="StringExtrapublisherid">publisherid</string>
+    <string name="StringExtraprofileid">profileid</string>
     <!--    StringExtra -->
 
     <!--    Translate-->
