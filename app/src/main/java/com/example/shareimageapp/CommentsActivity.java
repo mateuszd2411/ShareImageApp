@@ -125,7 +125,7 @@ public class CommentsActivity extends AppCompatActivity {
 
     private void addComment() {
         //go to "Comments" in realtime database firebase
-        DatabaseReference reference = FirebaseDatabase.getInstance().getReference(getString(R.string.DB_Comments)).child(postid);
+        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Comments").child(postid);
 
         HashMap<String, Object> hashMap = new HashMap<>();
         hashMap.put("comment", addcomment.getText().toString());
@@ -137,7 +137,7 @@ public class CommentsActivity extends AppCompatActivity {
     }
 
     private void getImage(){
-        DatabaseReference reference = FirebaseDatabase.getInstance().getReference(getString(R.string.DBUsers)).child(firebaseUser.getUid());
+        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Users").child(firebaseUser.getUid());
 
         reference.addValueEventListener(new ValueEventListener() {
             @Override
@@ -156,7 +156,7 @@ public class CommentsActivity extends AppCompatActivity {
     private void readComments(){
         //go to "Comments" folder in realtime database and get post id
         DatabaseReference reference = FirebaseDatabase.getInstance()
-                .getReference(String.valueOf(R.string.DB_Comments)).child(postid);
+                .getReference("Comments").child(postid);
 
         reference.addValueEventListener(new ValueEventListener() {
             @Override
