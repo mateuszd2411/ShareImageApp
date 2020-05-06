@@ -35,6 +35,7 @@ public class MainActivity extends AppCompatActivity {
         ButterKnife.bind(this);
 
         bottomNavigationView.setOnNavigationItemSelectedListener(navigationItemSelectedListener);
+        bottomNavigationView.setItemIconTintList(null); //original color icon
 
         //get "publisherid" from comment, replace fragment
         Bundle intent = getIntent().getExtras();
