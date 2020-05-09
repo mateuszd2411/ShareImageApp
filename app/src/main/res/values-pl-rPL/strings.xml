@@ -16,6 +16,9 @@
     <string name="StringExtrapostid">postid</string>
     <string name="StringExtrapublisherid">publisherid</string>
     <string name="StringExtraprofileid">profileid</string>
+
+    <string name="open">open</string>
+    <string name="close">close</string>
     <!--    StringExtra -->
 
     <!--    Translate-->
@@ -51,4 +54,9 @@
     <string name="ViewAllComments">Zobacz wszystkie\u0020</string>  <!--   \u0020 Space-->
     <string name="_Comments">\u0020Komentarze</string>
     <string name="_likes">\u0020polubień</string>
+    <string name="home">Główna</string>
+    <string name="settings">Ustawienia</string>
+    <string name="posts_info">Informacje o Postach</string>
+    <string name="general">Menu</string>
+    <string name="notifications">Powiadomienia</string>
 </resources>

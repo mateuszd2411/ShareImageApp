@@ -1,25 +1,39 @@
 package com.example.shareimageapp;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
 
 import com.example.shareimageapp.Fragment.HomeFragment;
 import com.example.shareimageapp.Fragment.NotificationFragment;
 import com.example.shareimageapp.Fragment.ProfileFragment;
 import com.example.shareimageapp.Fragment.SearchFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class MainActivity extends AppCompatActivity {
+
+    //Drawer Layout
+    @BindView(R.id.drawer)
+    DrawerLayout drawerLayout;
+    @BindView(R.id.navigationView)
+    NavigationView navigationView;
+    ActionBarDrawerToggle actionBarDrawerToggle;
+    Toolbar toolbar;
 
     Fragment selectedFragment = null;
 
@@ -33,6 +47,22 @@ public class MainActivity extends AppCompatActivity {
 
         //bind the current view
         ButterKnife.bind(this);
+
+        //Drawer Layout
+
+        actionBarDrawerToggle = new ActionBarDrawerToggle(this,
+                drawerLayout,
+                toolbar,
+                R.string.open,
+                R.string.close);
+        drawerLayout.addDrawerListener(actionBarDrawerToggle);
+
+        actionBarDrawerToggle.getDrawerArrowDrawable().setColor(Color.RED);
+        actionBarDrawerToggle.setDrawerIndicatorEnabled(true);
+        actionBarDrawerToggle.setDrawerSlideAnimationEnabled(true);
+        navigationView.setItemIconTintList(null);
+
+        actionBarDrawerToggle.syncState();
 
         bottomNavigationView.setOnNavigationItemSelectedListener(navigationItemSelectedListener);
         bottomNavigationView.setItemIconTintList(null); //original color icon

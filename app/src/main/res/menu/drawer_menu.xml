@@ -1,4 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
+    <item android:title="@string/general">
+        <menu>
+
+            <item
+                android:id="@+id/home"
+                android:icon="@drawable/ic_home48x48"
+                android:title="@string/home" />
+            <item
+                android:id="@+id/settings"
+                android:icon="@drawable/ic_settings48x48"
+                android:title="@string/settings" />
+
+        </menu>
+
+    </item>
+
+    <item android:title="@string/posts_info">
+        <menu>
+
+            <item
+                android:id="@+id/add_post"
+                android:icon="@drawable/ic_add_post"
+                android:title="@string/home" />
+            <item
+                android:id="@+id/notifications"
+                android:icon="@drawable/ic_likes_nav"
+                android:title="@string/notifications" />
+
+        </menu>
+
+    </item>
+
 </menu>
