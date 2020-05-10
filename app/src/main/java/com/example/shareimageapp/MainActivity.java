@@ -25,7 +25,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
 
     //Drawer Layout
     @BindView(R.id.drawer)
@@ -123,4 +123,26 @@ public class MainActivity extends AppCompatActivity {
                     return true;
                 }
             };
+
+    @Override
+    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+
+        if (item.getItemId() == R.id.home) {
+
+        }
+
+        if (item.getItemId() == R.id.settings) {
+
+        }
+
+        if (item.getItemId() == R.id.add_post) {
+
+        }
+
+        if (item.getItemId() == R.id.notifications) {
+
+        }
+
+        return true;
+    }
 }
