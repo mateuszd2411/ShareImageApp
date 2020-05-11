@@ -60,4 +60,6 @@
     <string name="posts_info">Posts Info</string>
     <string name="general">General</string>
     <string name="notifications">Notifications</string>
+    <string name="dark_mode">Dark mode</string>
+    <string name="add_post">Add Post</string>
 </resources>

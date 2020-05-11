@@ -23,7 +23,7 @@
             <item
                 android:id="@+id/add_post"
                 android:icon="@drawable/ic_add_post"
-                android:title="@string/home" />
+                android:title="@string/add_post" />
             <item
                 android:id="@+id/notifications"
                 android:icon="@drawable/ic_likes_nav"

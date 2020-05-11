@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 
@@ -47,6 +48,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         //bind the current view
         ButterKnife.bind(this);
+        navigationView.setNavigationItemSelectedListener(this);
 
         //Drawer Layout
 
@@ -59,8 +61,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         actionBarDrawerToggle.getDrawerArrowDrawable().setColor(Color.RED);
         actionBarDrawerToggle.setDrawerIndicatorEnabled(true);
-        actionBarDrawerToggle.setDrawerSlideAnimationEnabled(true);
+//        actionBarDrawerToggle.setDrawerSlideAnimationEnabled(true);
         navigationView.setItemIconTintList(null);
+        navigationView.bringToFront();
 
         actionBarDrawerToggle.syncState();
 
@@ -127,22 +130,29 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
 
-        if (item.getItemId() == R.id.home) {
+        item.setChecked(true);
+        item.setCheckable(true);
+        drawerLayout.closeDrawers();
 
+        if (item.getItemId() == R.id.home) {
+            selectedFragment = new HomeFragment();
         }
 
         if (item.getItemId() == R.id.settings) {
-
+            Intent intent = new Intent(MainActivity.this, SettingsActivity.class);
+            startActivity(intent);
         }
 
         if (item.getItemId() == R.id.add_post) {
-
+            Intent intent = new Intent(MainActivity.this, PostActivity.class);
+            startActivity(intent);
         }
 
         if (item.getItemId() == R.id.notifications) {
-
+            selectedFragment = new NotificationFragment();
         }
 
+        drawerLayout.closeDrawer(GravityCompat.START);
         return true;
     }
 }

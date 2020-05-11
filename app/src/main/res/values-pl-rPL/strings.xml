@@ -59,4 +59,6 @@
     <string name="posts_info">Informacje o Postach</string>
     <string name="general">Menu</string>
     <string name="notifications">Powiadomienia</string>
+    <string name="dark_mode">Ciemny motyw</string>
+    <string name="add_post">Dodaj Post</string>
 </resources>
