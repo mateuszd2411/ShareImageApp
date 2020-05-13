@@ -61,7 +61,7 @@ public class PostActivity extends AppCompatActivity {
         ButterKnife.bind(this);
 
         //create folder "Posts" in FirebaseStorage
-        storageReference = FirebaseStorage.getInstance().getReference(getString(R.string.SDBPosts));
+        storageReference = FirebaseStorage.getInstance().getReference("Posts");
 
         //clickable close button, go to MainActivity
         close.setOnClickListener(new View.OnClickListener() {
@@ -121,7 +121,7 @@ public class PostActivity extends AppCompatActivity {
                         myUrl = downloadUri.toString();
 
                         //go to/make folder i realtime database
-                        DatabaseReference reference = FirebaseDatabase.getInstance().getReference(getString(R.string.DBPosts));
+                        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Posts");
 
                         //get key for make postid
                         String postid = reference.push().getKey();

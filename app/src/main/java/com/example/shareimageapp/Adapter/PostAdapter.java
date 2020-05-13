@@ -140,7 +140,7 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
 
     private void getComments(String postid, final TextView comments){
         DatabaseReference reference = FirebaseDatabase.getInstance().getReference()
-                .child(String.valueOf(R.string.DB_Comments)).child(postid);
+                .child("Comments").child(postid);
 
         reference.addValueEventListener(new ValueEventListener() {
             @SuppressLint("SetTextI18n")
@@ -193,7 +193,7 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
 
     private void nrLikes(final TextView likes, String postid){
         //go to "postid" in "Likes"
-        DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child(mContext.getString(R.string.DBLikes))
+        DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("Likes")
                 .child(postid);
 
         reference.addValueEventListener(new ValueEventListener() {
@@ -215,7 +215,7 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
     //send publisherInfo to realtime database
     private void publisherInfo(final ImageView image_profile, final TextView username, final TextView publisher, String userid){
        //Go to "Users" in realtime database
-        DatabaseReference reference = FirebaseDatabase.getInstance().getReference(mContext.getString(R.string.DBUsers)).child(userid);
+        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Users").child(userid);
 
         reference.addValueEventListener(new ValueEventListener() {
             @Override
