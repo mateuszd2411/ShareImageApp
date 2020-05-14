@@ -52,4 +52,7 @@
     <string name="notifications">Powiadomienia</string>
     <string name="dark_mode">Ciemny motyw</string>
     <string name="add_post">Dodaj Post</string>
+    <string name="edit_profilet">Edytuj Profil</string>
+    <string name="follow">obserwuj</string>
+    <string name="following">obserwujesz</string>
 </resources>

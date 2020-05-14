@@ -51,4 +51,7 @@
     <string name="notifications">Notifications</string>
     <string name="dark_mode">Dark mode</string>
     <string name="add_post">Add Post</string>
+    <string name="edit_profilet">Edit Profile</string>
+    <string name="follow">follow</string>
+    <string name="following">following</string>
 </resources>

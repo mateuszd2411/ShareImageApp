@@ -40,9 +40,10 @@ public class ProfileFragment extends Fragment {
     @Nullable
     @BindView(R.id.options)
     ImageView options;
-    @Nullable
-    @BindView(R.id.post)
+//    @Nullable
+//    @BindView(R.id.post)
     TextView posts;
+
     @Nullable
     @BindView(R.id.followers)
     TextView followers;
@@ -78,9 +79,11 @@ public class ProfileFragment extends Fragment {
 
         //init views
         ButterKnife.bind(this, view);
+        posts = view.findViewById(R.id.posts);
 
         firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
 
+        //for id
         SharedPreferences prefs = getContext().getSharedPreferences("PREFS", Context.MODE_PRIVATE);
         profileid = prefs.getString("profileid", "none");
 
@@ -89,26 +92,32 @@ public class ProfileFragment extends Fragment {
         getNrPost();
 
         if (profileid.equals(firebaseUser.getUid())){
-            edit_profile.setText("Edit Profile");
+            assert edit_profile != null;
+            edit_profile.setText(R.string.edit_profilet);
         }else {
             checkFollow();
+            assert saved_fotos != null;
             saved_fotos.setVisibility(View.GONE);
         }
 
+        //edit_profile button clickable and logic for displaying text
+        assert edit_profile != null;
         edit_profile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 String btn = edit_profile.getText().toString();
 
-                if(btn.equals("Edit Profile")){
+                if(btn.equals(R.string.edit_profilet)){
 
-                }else if (btn.equals("follow")){
+                }else if (btn.equals(R.string.follow)){
+                    //set change in realtime database
                     FirebaseDatabase.getInstance().getReference().child("Follow").child(firebaseUser.getUid())
                             .child("following").child(profileid).setValue(true);
                     FirebaseDatabase.getInstance().getReference().child("Follow").child(profileid)
                             .child("followers").child(firebaseUser.getUid()).setValue(true);
 
-                }else if (btn.equals("following")){
+                }else if (btn.equals(R.string.following)){
+                    //set change in realtime database
                     FirebaseDatabase.getInstance().getReference().child("Follow").child(firebaseUser.getUid())
                             .child("following").child(profileid).removeValue();
                     FirebaseDatabase.getInstance().getReference().child("Follow").child(profileid)
@@ -118,11 +127,14 @@ public class ProfileFragment extends Fragment {
         });
 
         return view;
-    }
+    }//onCreateView END
 
 
+    //get user info from database
     private void userInfo(){
+        //go to "Users" profileid in realtime database
         DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Users").child(profileid);
+
         reference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -146,15 +158,17 @@ public class ProfileFragment extends Fragment {
     }
 
     private void checkFollow(){
+        //go to "Follow" following in realtime database
         DatabaseReference reference = FirebaseDatabase.getInstance().getReference()
                 .child("Follow").child(firebaseUser.getUid()).child("following");
+
         reference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 if (dataSnapshot.child(profileid).exists()){
-                    edit_profile.setText("following");
+                    edit_profile.setText(R.string.following);
                 }else {
-                    edit_profile.setText("follow");
+                    edit_profile.setText(R.string.follow);
                 }
             }
 
@@ -165,7 +179,9 @@ public class ProfileFragment extends Fragment {
         });
     }
 
+    //get followers number from realtime database
     private void getFollowers(){
+        //go to "Follow" followers in realtime database
         DatabaseReference reference = FirebaseDatabase.getInstance().getReference()
                 .child("Follow").child(profileid).child("followers");
 
@@ -198,19 +214,22 @@ public class ProfileFragment extends Fragment {
     }
 
     private void getNrPost(){
+        //go to "Posts" in realtime database
         DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Posts");
+
         reference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 int i = 0;
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()){
                     Post post = snapshot.getValue(Post.class);
+                    assert post != null;
                     if (post.getPublisher().equals(profileid)){
                         i++;
                     }
                 }
                 assert posts != null;
-                posts.setText(+i);
+                posts.setText(""+i);
             }
 
             @Override
