@@ -4,20 +4,20 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:background="@color/colorPrimary"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    tools:context=".DrawerHeader">
 
     <LinearLayout
+        android:id="@+id/top_bar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/top_bar"
         android:padding="5dp"
         android:orientation="horizontal">
 
         <de.hdodenhof.circleimageview.CircleImageView
-            android:id="@+id/image_profile"
+            android:id="@+id/drawer_image_profile"
             android:layout_width="60dp"
-            android:layout_height="60dp"
-            android:src="@drawable/ic_save48x48"/>
+            android:layout_height="60dp"/>
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -39,12 +39,11 @@
                     android:orientation="vertical">
 
                     <TextView
-                        android:id="@+id/posts"
+                        android:id="@+id/drawer_posts"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textColor="@color/colorPrimaryDark"
                         android:layout_gravity="center"
-                        android:text="123"
                         android:textSize="18sp"
                         android:textStyle="bold"/>
 
@@ -62,12 +61,11 @@
                     android:orientation="vertical">
 
                     <TextView
-                        android:id="@+id/followers"
+                        android:id="@+id/drawer_followers"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textColor="@color/colorPrimaryDark"
                         android:layout_gravity="center"
-                        android:text="23"
                         android:textSize="18sp"
                         android:textStyle="bold"/>
 
@@ -85,10 +83,9 @@
                     android:orientation="vertical">
 
                     <TextView
-                        android:id="@+id/following"
+                        android:id="@+id/drawer_following"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="33"
                         android:textColor="@color/colorPrimaryDark"
                         android:layout_gravity="center"
                         android:textSize="18sp"
@@ -108,7 +105,7 @@
     </LinearLayout>
 
     <LinearLayout
-        android:id="@+id/mid_bar"
+        android:id="@+id/drawer_mid_bar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:padding="5dp"
@@ -116,10 +113,9 @@
         android:orientation="vertical">
 
         <TextView
-            android:id="@+id/fullname"
+            android:id="@+id/drawer_fullname"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Zenek"
             android:layout_marginStart="15dp"
             android:maxLines="1"
             android:textStyle="bold"

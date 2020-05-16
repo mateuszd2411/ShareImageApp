@@ -1,25 +1,21 @@
-package com.example.shareimageapp.Fragment;
+package com.example.shareimageapp;
 
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.ImageButton;
-import android.widget.ImageView;
-import android.widget.TextView;
-
 import com.bumptech.glide.Glide;
 import com.example.shareimageapp.Model.Post;
 import com.example.shareimageapp.Model.User;
-import com.example.shareimageapp.R;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -31,55 +27,35 @@ import com.google.firebase.database.ValueEventListener;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class ProfileFragment extends Fragment {
+public class DrawerHeader extends Fragment {
 
     //init views
     @Nullable
-    @BindView(R.id.image_profile)
+    @BindView(R.id.drawer_image_profile)
     ImageView image_profile;
-    @Nullable
-    @BindView(R.id.options)
-    ImageView options;
-//    @Nullable
-//    @BindView(R.id.post)
+
     TextView posts;
 
     @Nullable
-    @BindView(R.id.followers)
+    @BindView(R.id.drawer_followers)
     TextView followers;
     @Nullable
-    @BindView(R.id.following)
+    @BindView(R.id.drawer_following)
     TextView following;
     @Nullable
-    @BindView(R.id.fullname)
+    @BindView(R.id.drawer_fullname)
     TextView fullname;
-    @Nullable
-    @BindView(R.id.bio)
-    TextView bio;
-    @Nullable
-    @BindView(R.id.username)
-    TextView username;
-    @Nullable
-    @BindView(R.id.edit_profile)
-    Button edit_profile;
-    @Nullable
-    @BindView(R.id.my_fotos)
-    ImageButton my_fotos;
-    @Nullable
-    @BindView(R.id.saved_fotos)
-    ImageButton saved_fotos;
 
     FirebaseUser firebaseUser;
     String profileid;
 
-    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_profile, container, false);
+        View view = inflater.inflate(R.layout.drawer_header, container, false);
 
         //init views
         ButterKnife.bind(this, view);
-        posts = view.findViewById(R.id.posts);
+        posts = view.findViewById(R.id.drawer_posts);
 
         firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
 
@@ -91,44 +67,8 @@ public class ProfileFragment extends Fragment {
         getFollowers();
         getNrPost();
 
-        if (profileid.equals(firebaseUser.getUid())){
-            assert edit_profile != null;
-            edit_profile.setText(R.string.edit_profilet);
-        }else {
-            checkFollow();
-            assert saved_fotos != null;
-            saved_fotos.setVisibility(View.GONE);
-        }
-
-        //edit_profile button clickable and logic for displaying text
-        assert edit_profile != null;
-        edit_profile.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                String btn = edit_profile.getText().toString();
-
-                if(btn.equals(R.string.edit_profilet)){
-
-                }else if (btn.equals(R.string.follow)){
-                    //set change in realtime database
-                    FirebaseDatabase.getInstance().getReference().child("Follow").child(firebaseUser.getUid())
-                            .child("following").child(profileid).setValue(true);
-                    FirebaseDatabase.getInstance().getReference().child("Follow").child(profileid)
-                            .child("followers").child(firebaseUser.getUid()).setValue(true);
-
-                }else if (btn.equals(R.string.following)){
-                    //set change in realtime database
-                    FirebaseDatabase.getInstance().getReference().child("Follow").child(firebaseUser.getUid())
-                            .child("following").child(profileid).removeValue();
-                    FirebaseDatabase.getInstance().getReference().child("Follow").child(profileid)
-                            .child("followers").child(firebaseUser.getUid()).removeValue();
-                }
-            }
-        });
-
         return view;
     }//onCreateView END
-
 
     //get user info from database
     private void userInfo(){
@@ -145,31 +85,7 @@ public class ProfileFragment extends Fragment {
                 User user = dataSnapshot.getValue(User.class);
 
                 Glide.with(getContext()).load(user.getImageurl()).into(image_profile);
-                username.setText(user.getUsername());
                 fullname.setText(user.getFullname());
-                bio.setText(user.getBio());
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-        });
-    }
-
-    private void checkFollow(){
-        //go to "Follow" following in realtime database
-        DatabaseReference reference = FirebaseDatabase.getInstance().getReference()
-                .child("Follow").child(firebaseUser.getUid()).child("following");
-
-        reference.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                if (dataSnapshot.child(profileid).exists()){
-                    edit_profile.setText(R.string.following);
-                }else {
-                    edit_profile.setText(R.string.follow);
-                }
             }
 
             @Override
@@ -238,5 +154,4 @@ public class ProfileFragment extends Fragment {
             }
         });
     }
-
 }
