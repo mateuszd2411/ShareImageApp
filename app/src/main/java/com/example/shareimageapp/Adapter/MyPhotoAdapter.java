@@ -16,12 +16,12 @@ import com.example.shareimageapp.R;
 import java.util.List;
 
 
-public class MyFotoAdapter extends RecyclerView.Adapter<MyFotoAdapter.ViewHolder>{
+public class MyPhotoAdapter extends RecyclerView.Adapter<MyPhotoAdapter.ViewHolder>{
 
     private Context context;
     private List<Post> mPosts;
 
-    public MyFotoAdapter(Context context, List<Post> mPost) {
+    public MyPhotoAdapter(Context context, List<Post> mPost) {
         this.context = context;
         this.mPosts = mPost;
     }
@@ -30,7 +30,7 @@ public class MyFotoAdapter extends RecyclerView.Adapter<MyFotoAdapter.ViewHolder
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
         View view = LayoutInflater.from(context).inflate(R.layout.fotos_item, viewGroup, false);
-        return new MyFotoAdapter.ViewHolder(view);
+        return new MyPhotoAdapter.ViewHolder(view);
     }
 
     @Override

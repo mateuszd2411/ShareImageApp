@@ -7,6 +7,9 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,6 +20,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.example.shareimageapp.Adapter.MyPhotoAdapter;
 import com.example.shareimageapp.Model.Post;
 import com.example.shareimageapp.Model.User;
 import com.example.shareimageapp.R;
@@ -27,6 +31,10 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -40,8 +48,6 @@ public class ProfileFragment extends Fragment {
     @Nullable
     @BindView(R.id.options)
     ImageView options;
-//    @Nullable
-//    @BindView(R.id.post)
     TextView posts;
 
     @Nullable
@@ -69,6 +75,11 @@ public class ProfileFragment extends Fragment {
     @BindView(R.id.saved_fotos)
     ImageButton saved_fotos;
 
+    //for MyPhotoAdapter to display pictures in profile
+    RecyclerView recyclerView;
+    MyPhotoAdapter myPhotoAdapter;
+    List<Post> postList;
+
     FirebaseUser firebaseUser;
     String profileid;
 
@@ -81,6 +92,15 @@ public class ProfileFragment extends Fragment {
         ButterKnife.bind(this, view);
         posts = view.findViewById(R.id.posts);
 
+        //init recycler to display photos in grid
+        recyclerView = view.findViewById(R.id.recycler_view);
+        recyclerView.setHasFixedSize(true);
+        LinearLayoutManager linearLayoutManager = new GridLayoutManager(getContext(), 3);
+        recyclerView.setLayoutManager(linearLayoutManager);
+        postList = new ArrayList<>();
+        myPhotoAdapter = new MyPhotoAdapter(getContext(), postList);
+        recyclerView.setAdapter(myPhotoAdapter);
+
         firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
 
         //for id
@@ -90,6 +110,7 @@ public class ProfileFragment extends Fragment {
         userInfo();
         getFollowers();
         getNrPost();
+        myPhotos();
 
         if (profileid.equals(firebaseUser.getUid())){
             assert edit_profile != null;
@@ -144,9 +165,14 @@ public class ProfileFragment extends Fragment {
 
                 User user = dataSnapshot.getValue(User.class);
 
+                assert user != null;
+                assert image_profile != null;
                 Glide.with(getContext()).load(user.getImageurl()).into(image_profile);
+                assert username != null;
                 username.setText(user.getUsername());
+                assert fullname != null;
                 fullname.setText(user.getFullname());
+                assert bio != null;
                 bio.setText(user.getBio());
             }
 
@@ -230,6 +256,33 @@ public class ProfileFragment extends Fragment {
                 }
                 assert posts != null;
                 posts.setText(""+i);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+    }
+
+    //my photos below user info
+    private void myPhotos(){
+        //go to "Posts" in realtime database
+        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Posts");
+
+        reference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                postList.clear();
+                for (DataSnapshot snapshot : dataSnapshot.getChildren()){
+                    Post post = snapshot.getValue(Post.class);
+                    if (post.getPublisher().equals(profileid)){
+                        postList.add(post);
+                    }
+                }
+                Collections.reverse(postList);
+                //set change
+                myPhotoAdapter.notifyDataSetChanged();
             }
 
             @Override
