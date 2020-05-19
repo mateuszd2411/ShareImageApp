@@ -8,25 +8,36 @@ import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageView;
+import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.example.shareimageapp.Fragment.HomeFragment;
 import com.example.shareimageapp.Fragment.NotificationFragment;
 import com.example.shareimageapp.Fragment.ProfileFragment;
 import com.example.shareimageapp.Fragment.SearchFragment;
+import com.example.shareimageapp.Model.Post;
+import com.example.shareimageapp.Model.User;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
+public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     //Drawer Layout
     @BindView(R.id.drawer)
@@ -40,6 +51,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     @BindView(R.id.bottom_navigation)
     BottomNavigationView bottomNavigationView;
+
+    String profileid;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,9 +83,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         bottomNavigationView.setOnNavigationItemSelectedListener(navigationItemSelectedListener);
         bottomNavigationView.setItemIconTintList(null); //original color icon
 
+        //for id
+        SharedPreferences prefs = getSharedPreferences("PREFS", Context.MODE_PRIVATE);
+        profileid = prefs.getString("profileid", "none");
+
         //get "publisherid" from comment, replace fragment
         Bundle intent = getIntent().getExtras();
-        if (intent != null){
+        if (intent != null) {
             String publisher = intent.getString(String.valueOf(R.string.StringExtrapublisherid));
 
             SharedPreferences.Editor editor = getSharedPreferences("PREFS", MODE_PRIVATE).edit();
@@ -80,10 +97,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
                     new ProfileFragment()).commit();
-        }else {
+        } else {
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
                     new HomeFragment()).commit();
         }
+
+        userInfo();
 
     }// onCreate END
 
@@ -92,7 +111,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 @Override
                 public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
 
-                    switch (menuItem.getItemId()){
+                    switch (menuItem.getItemId()) {
                         case R.id.nav_home:
                             selectedFragment = new HomeFragment();
                             break;
@@ -118,7 +137,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                             break;
                     }
 
-                    if(selectedFragment != null){
+                    if (selectedFragment != null) {
                         getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
                                 selectedFragment).commit();
                     }
@@ -154,5 +173,99 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         drawerLayout.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    //get user info from database
+    private void userInfo() {
+        //go to "Users" profileid in realtime database for getting  image profile and full name
+        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Users").child(profileid);
+
+        reference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+                User user = dataSnapshot.getValue(User.class);
+
+                ImageView drawer_image_profile = (ImageView) findViewById(R.id.drawer_image_profile);
+                Glide.with(getApplicationContext()).load(user.getImageurl()).into(drawer_image_profile);
+
+                TextView drawer_fullname;
+                drawer_fullname = findViewById(R.id.drawer_fullname);
+                drawer_fullname.setText(user.getFullname());
+
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
+
+        //go to "Posts" in realtime database for getting nr posts
+        DatabaseReference reference1 = FirebaseDatabase.getInstance().getReference("Posts");
+
+        reference1.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                int i = 0;
+                for (DataSnapshot snapshot : dataSnapshot.getChildren()){
+                    Post post = snapshot.getValue(Post.class);
+                    assert post != null;
+                    if (post.getPublisher().equals(profileid)){
+                        i++;
+                    }
+                }
+                TextView posts;
+                posts = findViewById(R.id.drawer_posts);
+                posts.setText(""+i);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
+
+        //go to "Follow" followers in realtime database for getting nr of followers
+        DatabaseReference reference2 = FirebaseDatabase.getInstance().getReference()
+                .child("Follow").child(profileid).child("followers");
+
+        reference2.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                TextView followers;
+                followers = findViewById(R.id.drawer_followers);
+                followers.setText(""+dataSnapshot.getChildrenCount());
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
+        //go to "Follow" following in realtime database for getting nr of following
+        DatabaseReference reference3 = FirebaseDatabase.getInstance().getReference()
+                .child("Follow").child(profileid).child("following");
+
+        reference3.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                TextView following;
+                following = findViewById(R.id.drawer_following);
+                following.setText(""+dataSnapshot.getChildrenCount());
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
+
+
     }
 }
