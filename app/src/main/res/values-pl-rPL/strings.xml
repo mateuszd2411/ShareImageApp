@@ -55,4 +55,6 @@
     <string name="edit_profilet">Edytuj Profil</string>
     <string name="follow">obserwuj</string>
     <string name="following">obserwujesz</string>
+    <string name="posts">posty</string>
+    <string name="followers">obserwujący</string>
 </resources>

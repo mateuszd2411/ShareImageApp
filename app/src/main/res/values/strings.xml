@@ -54,4 +54,6 @@
     <string name="edit_profilet">Edit Profile</string>
     <string name="follow">follow</string>
     <string name="following">following</string>
+    <string name="posts">posts</string>
+    <string name="followers">followers</string>
 </resources>

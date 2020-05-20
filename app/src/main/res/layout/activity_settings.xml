@@ -7,6 +7,7 @@
     tools:context=".SettingsActivity">
 
     <androidx.cardview.widget.CardView
+        android:id="@+id/cardView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:contentPadding="10dp">
@@ -18,5 +19,21 @@
             android:text="@string/dark_mode" />
 
     </androidx.cardview.widget.CardView>
+
+    <Button
+        android:id="@+id/change_language"
+        android:layout_width="match_parent"
+        android:layout_height="20dp"
+        android:layout_below="@+id/cardView"
+        android:textSize="10sp"
+        android:padding="2dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_centerHorizontal="true"
+        android:text="@string/change_language"
+        android:layout_marginTop="15dp"
+        android:textColor="@color/colorPrimary"
+        android:background="@drawable/button_background"
+        tools:ignore="SmallSp" />
 
 </RelativeLayout>

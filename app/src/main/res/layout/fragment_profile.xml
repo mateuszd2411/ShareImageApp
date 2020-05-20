@@ -97,7 +97,7 @@
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="posts"/>
+                                android:text="@string/posts"/>
 
                         </LinearLayout>
 
@@ -119,7 +119,7 @@
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="followers"/>
+                                android:text="@string/followers"/>
 
                         </LinearLayout>
 
@@ -141,7 +141,7 @@
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="following"/>
+                                android:text="@string/following"/>
 
                         </LinearLayout>
 
