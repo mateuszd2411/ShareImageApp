@@ -75,6 +75,12 @@ public class ProfileFragment extends Fragment {
     @BindView(R.id.saved_fotos)
     ImageButton saved_fotos;
 
+    //for save post picture blow user info
+    private List<String> mySaves;
+    RecyclerView recyclerView_saves;
+    MyPhotoAdapter myFotoAdapter_saves;
+    List<Post> postList_saves;
+
     //for MyPhotoAdapter to display pictures in profile
     RecyclerView recyclerView;
     MyPhotoAdapter myPhotoAdapter;
@@ -101,6 +107,18 @@ public class ProfileFragment extends Fragment {
         myPhotoAdapter = new MyPhotoAdapter(getContext(), postList);
         recyclerView.setAdapter(myPhotoAdapter);
 
+        //init recycler to display saved photos in grid
+        recyclerView_saves = view.findViewById(R.id.recycler_view_save);
+        recyclerView_saves.setHasFixedSize(true);
+        LinearLayoutManager linearLayoutManager_saves = new GridLayoutManager(getContext(), 3);
+        recyclerView_saves.setLayoutManager(linearLayoutManager_saves);
+        postList_saves = new ArrayList<>();
+        myFotoAdapter_saves = new MyPhotoAdapter(getContext(), postList_saves);
+        recyclerView_saves.setAdapter(myFotoAdapter_saves);
+
+        recyclerView.setVisibility(View.VISIBLE);
+        recyclerView_saves.setVisibility(View.GONE);
+
         firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
 
         //for id
@@ -111,6 +129,7 @@ public class ProfileFragment extends Fragment {
         getFollowers();
         getNrPost();
         myPhotos();
+        mySaves();
 
         if (profileid.equals(firebaseUser.getUid())){
             assert edit_profile != null;
@@ -120,6 +139,8 @@ public class ProfileFragment extends Fragment {
             assert saved_fotos != null;
             saved_fotos.setVisibility(View.GONE);
         }
+
+        //////////////////CLICKABLE
 
         //edit_profile button clickable and logic for displaying text
         assert edit_profile != null;
@@ -146,6 +167,27 @@ public class ProfileFragment extends Fragment {
                 }
             }
         });
+
+        //for save photos
+        assert my_fotos != null;
+        my_fotos.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                recyclerView.setVisibility(View.VISIBLE);
+                recyclerView_saves.setVisibility(View.GONE);
+            }
+        });
+
+        assert saved_fotos != null;
+        saved_fotos.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                recyclerView.setVisibility(View.GONE);
+                recyclerView_saves.setVisibility(View.VISIBLE);
+            }
+        });
+
+        //////////////////CLICKABLE
 
         return view;
     }//onCreateView END
@@ -283,6 +325,54 @@ public class ProfileFragment extends Fragment {
                 Collections.reverse(postList);
                 //set change
                 myPhotoAdapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+    }
+
+    //save post pictures
+    private void mySaves(){
+        mySaves = new ArrayList<>();
+        //go to "Saves" and get current user id
+        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Saves")
+                .child(firebaseUser.getUid());
+
+        reference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                for (DataSnapshot snapshot : dataSnapshot.getChildren()){
+                    mySaves.add(snapshot.getKey());
+                }
+                readSaves();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+    }
+
+    private void readSaves() {
+        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Posts");
+        reference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                postList_saves.clear();
+                for (DataSnapshot snapshot : dataSnapshot.getChildren()){
+                    Post post = snapshot.getValue(Post.class);
+
+                    for (String id : mySaves){
+                        if (post.getPostid().equals(id)){
+                            postList_saves.add(post);
+                        }
+                    }
+                }
+                myFotoAdapter_saves.notifyDataSetChanged();
             }
 
             @Override
