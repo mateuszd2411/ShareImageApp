@@ -61,7 +61,7 @@
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:layout_alignParentEnd="true"
-                android:src="@drawable/ic_save48x48" />
+                android:src="@drawable/ic_savedark48x48" />
 
         </RelativeLayout>
 

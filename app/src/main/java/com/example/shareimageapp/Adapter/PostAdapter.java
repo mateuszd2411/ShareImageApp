@@ -72,6 +72,26 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
         nrLikes(viewHolder.likes, post.getPostid());
         //set text comment + number comments
         getComments(post.getPostid(), viewHolder.comments);
+        isSaved(post.getPostid(), viewHolder.save);
+
+        ////////////////////BUTTONS CLICKABLE
+
+        //save button clickable
+        viewHolder.save.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //logic for save pictures
+                if(viewHolder.save.getTag().equals("save")){
+                    //add
+                    FirebaseDatabase.getInstance().getReference().child("Saves").child(firebaseUser.getUid())
+                            .child(post.getPostid()).setValue(true);
+                }else {
+                    //remove
+                    FirebaseDatabase.getInstance().getReference().child("Saves").child(firebaseUser.getUid())
+                            .child(post.getPostid()).removeValue();
+                }
+            }
+        });
 
         viewHolder.like.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -108,6 +128,8 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
                 mContext.startActivity(intent);
             }
         });
+
+        ////////////////////BUTTONS CLICKABLE
     }
 
     @Override
@@ -190,7 +212,6 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
         });
     }
 
-
     private void nrLikes(final TextView likes, String postid){
         //go to "postid" in "Likes"
         DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("Likes")
@@ -210,7 +231,6 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
             }
         });
     }
-
 
     //send publisherInfo to realtime database
     private void publisherInfo(final ImageView image_profile, final TextView username, final TextView publisher, String userid){
@@ -232,5 +252,34 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
             }
         });
     }
+
+    //Save post image in user profile below user info
+    private void isSaved(final String postid, final ImageView imageView){
+        //get current user
+        FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+
+        //go to "Saves" and get current user id
+        DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("Saves")
+                .child(firebaseUser.getUid());
+
+        reference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                if (dataSnapshot.child(postid).exists()){
+                    imageView.setImageResource(R.drawable.ic_savedcolor48x48);
+                    imageView.setTag("saved");
+                } else {
+                    imageView.setImageResource(R.drawable.ic_savedark48x48);
+                    imageView.setTag("save");
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+    }
+
 
 }

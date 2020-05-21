@@ -208,7 +208,7 @@
                     android:layout_width="0dp"
                     android:layout_weight="1"
                     android:id="@+id/saved_fotos"
-                    android:src="@drawable/ic_save48x48"
+                    android:src="@drawable/ic_savedcolor48x48"
                     android:layout_height="wrap_content"
                     style="?android:attr/buttonBarButtonStyle"/>
 
