@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
@@ -16,6 +17,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.shareimageapp.CommentsActivity;
+import com.example.shareimageapp.LoginActivity;
 import com.example.shareimageapp.Model.Post;
 import com.example.shareimageapp.Model.User;
 import com.example.shareimageapp.R;
@@ -28,6 +30,8 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.List;
+
+import es.dmoral.toasty.Toasty;
 
 public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
 
@@ -85,10 +89,14 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
                     //add
                     FirebaseDatabase.getInstance().getReference().child("Saves").child(firebaseUser.getUid())
                             .child(post.getPostid()).setValue(true);
+                    //display toast message
+                    Toasty.info(mContext, R.string.savedPost, Toast.LENGTH_LONG, true).show();
                 }else {
                     //remove
                     FirebaseDatabase.getInstance().getReference().child("Saves").child(firebaseUser.getUid())
                             .child(post.getPostid()).removeValue();
+                    //display toast message
+                    Toasty.info(mContext, R.string.deleteSavedPost, Toast.LENGTH_LONG, true).show();
                 }
             }
         });

@@ -180,7 +180,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         return true;
     }
 
-    //get user info from database
+    //get user info from database an set to draw navigation
     private void userInfo() {
         //go to "Users" profileid in realtime database for getting  image profile and full name
         DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Users").child(profileid);

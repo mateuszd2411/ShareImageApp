@@ -56,4 +56,6 @@
     <string name="following">following</string>
     <string name="posts">posts</string>
     <string name="followers">followers</string>
+    <string name="savedPost">This Post has been saved to your Profile</string>
+    <string name="deleteSavedPost">This Post has been deleted from your Profile</string>
 </resources>
