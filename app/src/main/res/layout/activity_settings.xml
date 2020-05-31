@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="?attr/backgroundColor"
     tools:context=".SettingsActivity">
 
     <androidx.cardview.widget.CardView
@@ -13,10 +14,11 @@
         app:contentPadding="10dp">
 
         <androidx.appcompat.widget.SwitchCompat
-            android:id="@+id/postSwitch"
+            android:id="@+id/darkModeSwitch"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/dark_mode" />
+            android:text="@string/dark_mode"
+            android:textColor="?attr/textColor"/>
 
     </androidx.cardview.widget.CardView>
 
