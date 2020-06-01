@@ -24,6 +24,7 @@
         android:id="@+id/navigationView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="?attr/cardBackground"
         app:menu="@menu/drawer_menu"
         app:headerLayout="@layout/drawer_header"
         android:layout_gravity="start"
@@ -43,6 +44,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
+        android:background="?attr/cardBackground"
         android:id="@+id/bottom">
 
         <com.google.android.material.bottomnavigation.BottomNavigationView

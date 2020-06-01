@@ -7,35 +7,31 @@
     android:background="?attr/backgroundColor"
     tools:context=".SettingsActivity">
 
-    <androidx.cardview.widget.CardView
-        android:id="@+id/cardView"
+    <androidx.appcompat.widget.SwitchCompat
+        android:id="@+id/darkModeSwitch"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:contentPadding="10dp">
-
-        <androidx.appcompat.widget.SwitchCompat
-            android:id="@+id/darkModeSwitch"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/dark_mode"
-            android:textColor="?attr/textColor"/>
-
-    </androidx.cardview.widget.CardView>
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:background="?attr/backgroundColor"
+        android:text="@string/dark_mode"
+        android:textColor="?attr/textColor" />
 
     <Button
         android:id="@+id/change_language"
         android:layout_width="match_parent"
+        android:layout_below="@id/darkModeSwitch"
         android:layout_height="20dp"
-        android:layout_below="@+id/cardView"
-        android:textSize="10sp"
-        android:padding="2dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
         android:layout_centerHorizontal="true"
-        android:text="@string/change_language"
+        android:layout_marginLeft="20dp"
         android:layout_marginTop="15dp"
-        android:textColor="@color/colorPrimary"
+        android:layout_marginRight="20dp"
         android:background="@drawable/button_background"
+        android:padding="2dp"
+        android:text="@string/change_language"
+        android:textColor="@color/colorPrimary"
+        android:textSize="10sp"
         tools:ignore="SmallSp" />
 
 </RelativeLayout>
