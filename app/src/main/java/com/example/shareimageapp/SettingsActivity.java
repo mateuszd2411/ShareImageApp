@@ -26,6 +26,8 @@ public class SettingsActivity extends AppCompatActivity {
     @BindView(R.id.darkModeSwitch)
     SwitchCompat darkModeSwitch;
 
+    String chooseMode = "";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         ////////////////////////////////////////////For Dark Theme
@@ -39,6 +41,7 @@ public class SettingsActivity extends AppCompatActivity {
         ////////////////////////////////////////////For Dark Theme
         super.onCreate(savedInstanceState);
         loadLocale();       //for change language
+        loadTheme();
         setContentView(R.layout.activity_settings);
 
         changeLang = findViewById(R.id.change_language);
@@ -55,10 +58,20 @@ public class SettingsActivity extends AppCompatActivity {
             public void onCheckedChanged(CompoundButton compoundButton, boolean isChecked) {
                 if (isChecked) {
                     AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
-                    restartApp();
+                    chooseMode = "dark";
+                    //save data to share preferences
+                    SharedPreferences.Editor editor = getSharedPreferences("SettingsTheme", MODE_PRIVATE).edit();
+                    editor.putString("My_Theme", chooseMode);
+                    editor.apply();
+                    restartAppThemeMode();
                 } else {
                     AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
-                    restartApp();
+                    chooseMode = "light";
+                    SharedPreferences.Editor editor = getSharedPreferences("SettingsTheme", MODE_PRIVATE).edit();
+                    editor.putString("My_Theme", chooseMode);
+                    editor.apply();
+                    restartAppThemeMode();
+                    restartAppThemeMode();
                 }
             }
         });
@@ -130,5 +143,20 @@ public class SettingsActivity extends AppCompatActivity {
         Intent intent = new Intent(SettingsActivity.this, MainActivity.class);
         startActivity(intent);
         finish();
+    }
+
+    private void restartAppThemeMode() {
+        Intent intent = new Intent(SettingsActivity.this, MainActivity.class);
+        startActivity(intent);
+        finish();
+        SharedPreferences prefs = getSharedPreferences("SettingsTheme", Activity.MODE_PRIVATE);
+        String language = prefs.getString("My_Theme", "");
+        setLocale(language);
+    }
+
+    private void loadTheme() {
+        SharedPreferences prefs = getSharedPreferences("SettingsTheme", Activity.MODE_PRIVATE);
+        String theme = prefs.getString("My_Theme", "");
+        setLocale(theme);
     }
 }
