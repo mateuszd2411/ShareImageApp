@@ -59,4 +59,5 @@
     <string name="followers">obserwujący</string>
     <string name="savedPost">Ten post został zapisany w twoim Profilu</string>
     <string name="deleteSavedPost">Ten post został usunięty z twojego Profilu</string>
+    <string name="photo">Zdjęcie</string>
 </resources>

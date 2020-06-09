@@ -3,6 +3,7 @@ package com.example.shareimageapp.Adapter;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Build;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,10 +14,13 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
+import androidx.fragment.app.FragmentActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.shareimageapp.CommentsActivity;
+import com.example.shareimageapp.Fragment.PostDetailFragment;
+import com.example.shareimageapp.Fragment.ProfileFragment;
 import com.example.shareimageapp.LoginActivity;
 import com.example.shareimageapp.Model.Post;
 import com.example.shareimageapp.Model.User;
@@ -79,6 +83,55 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
         isSaved(post.getPostid(), viewHolder.save);
 
         ////////////////////BUTTONS CLICKABLE
+/////////////Post image Clickable and go to Post Details
+        viewHolder.image_profile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                SharedPreferences.Editor editor = mContext.getSharedPreferences("PREFS", Context.MODE_PRIVATE).edit();
+                editor.putString("profileid", post.getPublisher());
+                editor.apply();
+
+                ((FragmentActivity)mContext).getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
+                        new ProfileFragment()).commit();
+            }
+        });
+
+        viewHolder.username.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                SharedPreferences.Editor editor = mContext.getSharedPreferences("PREFS", Context.MODE_PRIVATE).edit();
+                editor.putString("profileid", post.getPublisher());
+                editor.apply();
+
+                ((FragmentActivity)mContext).getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
+                        new ProfileFragment()).commit();
+            }
+        });
+
+        viewHolder.publisher.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                SharedPreferences.Editor editor = mContext.getSharedPreferences("PREFS", Context.MODE_PRIVATE).edit();
+                editor.putString("profileid", post.getPublisher());
+                editor.apply();
+
+                ((FragmentActivity)mContext).getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
+                        new ProfileFragment()).commit();
+            }
+        });
+
+        viewHolder.post_image.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                SharedPreferences.Editor editor = mContext.getSharedPreferences("PREFS", Context.MODE_PRIVATE).edit();
+                editor.putString("postid", post.getPostid());
+                editor.apply();
+
+                ((FragmentActivity)mContext).getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
+                        new PostDetailFragment()).commit();
+            }
+        });
+        /////////////Post image Clickable and go to Post Details////EDN
 
         //save button clickable
         viewHolder.save.setOnClickListener(new View.OnClickListener() {
@@ -274,10 +327,10 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 if (dataSnapshot.child(postid).exists()){
-                    imageView.setImageResource(R.drawable.ic_savedcolor48x48);
+                    imageView.setImageResource(R.drawable.ic_saved_color48x48);
                     imageView.setTag("saved");
                 } else {
-                    imageView.setImageResource(R.drawable.ic_savedark48x48);
+                    imageView.setImageResource(R.drawable.ic_save_dark48x48);
                     imageView.setTag("save");
                 }
             }
