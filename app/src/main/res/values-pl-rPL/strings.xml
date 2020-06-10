@@ -60,4 +60,8 @@
     <string name="savedPost">Ten post został zapisany w twoim Profilu</string>
     <string name="deleteSavedPost">Ten post został usunięty z twojego Profilu</string>
     <string name="photo">Zdjęcie</string>
+    <string name="edit_profile">Edytuj Profil</string>
+    <string name="save">Zapisz</string>
+    <string name="change_photo">Zmień Zdjęcie</string>
+    <string name="bio">Opis</string>
 </resources>

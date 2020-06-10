@@ -59,4 +59,8 @@
     <string name="savedPost">This Post has been saved to your Profile</string>
     <string name="deleteSavedPost">This Post has been deleted from your Profile</string>
     <string name="photo">Photo</string>
+    <string name="edit_profile">Edit Profile</string>
+    <string name="save">Save</string>
+    <string name="change_photo">Change Photo</string>
+    <string name="bio">Bio</string>
 </resources>
