@@ -52,7 +52,7 @@
     <string name="notifications">Powiadomienia</string>
     <string name="dark_mode">Ciemny motyw</string>
     <string name="add_post">Dodaj Post</string>
-    <string name="edit_profilet">Edytuj Profil</string>
+    <string name="edit_profile">Edytuj Profil</string>
     <string name="follow">obserwuj</string>
     <string name="following">obserwujesz</string>
     <string name="posts">posty</string>
@@ -60,8 +60,9 @@
     <string name="savedPost">Ten post został zapisany w twoim Profilu</string>
     <string name="deleteSavedPost">Ten post został usunięty z twojego Profilu</string>
     <string name="photo">Zdjęcie</string>
-    <string name="edit_profile">Edytuj Profil</string>
     <string name="save">Zapisz</string>
     <string name="change_photo">Zmień Zdjęcie</string>
     <string name="bio">Opis</string>
+    <string name="Uploading">Aktualizuje…</string>
+    <string name="updated">Zaktualizowanio Pomyślnie</string>
 </resources>

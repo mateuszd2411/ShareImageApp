@@ -1,6 +1,7 @@
 package com.example.shareimageapp.Fragment;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 
@@ -21,6 +22,7 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.example.shareimageapp.Adapter.MyPhotoAdapter;
+import com.example.shareimageapp.EditProfileActivity;
 import com.example.shareimageapp.Model.Post;
 import com.example.shareimageapp.Model.User;
 import com.example.shareimageapp.R;
@@ -133,7 +135,7 @@ public class ProfileFragment extends Fragment {
 
         if (profileid.equals(firebaseUser.getUid())){
             assert edit_profile != null;
-            edit_profile.setText(R.string.edit_profilet);
+            edit_profile.setText(R.string.edit_profile);
         }else {
             checkFollow();
             assert saved_fotos != null;
@@ -149,8 +151,8 @@ public class ProfileFragment extends Fragment {
             public void onClick(View view) {
                 String btn = edit_profile.getText().toString();
 
-                if(btn.equals(R.string.edit_profilet)){
-
+                if(btn.equals(R.string.edit_profile)){
+                    startActivity(new Intent(getContext(), EditProfileActivity.class));
                 }else if (btn.equals(R.string.follow)){
                     //set change in realtime database
                     FirebaseDatabase.getInstance().getReference().child("Follow").child(firebaseUser.getUid())
