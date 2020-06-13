@@ -135,7 +135,7 @@ public class ProfileFragment extends Fragment {
 
         if (profileid.equals(firebaseUser.getUid())){
             assert edit_profile != null;
-            edit_profile.setText(R.string.edit_profile);
+            edit_profile.setText("Edit Profile");
         }else {
             checkFollow();
             assert saved_fotos != null;
@@ -151,9 +151,10 @@ public class ProfileFragment extends Fragment {
             public void onClick(View view) {
                 String btn = edit_profile.getText().toString();
 
-                if(btn.equals(R.string.edit_profile)){
+                if(btn.equals("Edit Profile")){
                     startActivity(new Intent(getContext(), EditProfileActivity.class));
-                }else if (btn.equals(R.string.follow)){
+                }
+                else if (btn.equals(R.string.follow)){
                     //set change in realtime database
                     FirebaseDatabase.getInstance().getReference().child("Follow").child(firebaseUser.getUid())
                             .child("following").child(profileid).setValue(true);
