@@ -64,4 +64,5 @@
     <string name="bio">Bio</string>
     <string name="Uploading">Uploading…</string>
     <string name="updated">Updated Successfully</string>
+    <string name="Save">Saved</string>
 </resources>

@@ -134,6 +134,7 @@ public class EditProfileActivity extends AppCompatActivity {
         save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Toasty.success(EditProfileActivity.this, R.string.Save, Toast.LENGTH_LONG, true).show();
                 updateProfile(fullname.getText().toString(),
                         username.getText().toString(),
                         bio.getText().toString());

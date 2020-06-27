@@ -177,6 +177,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             startActivity(intent);
         }
 
+        if (item.getItemId() == R.id.edit_profile) {
+            Intent intent = new Intent(MainActivity.this, EditProfileActivity.class);
+            startActivity(intent);
+        }
+
         if (item.getItemId() == R.id.add_post) {
             Intent intent = new Intent(MainActivity.this, PostActivity.class);
             startActivity(intent);

@@ -65,4 +65,5 @@
     <string name="bio">Opis</string>
     <string name="Uploading">Aktualizuje…</string>
     <string name="updated">Zaktualizowanio Pomyślnie</string>
+    <string name="Save">Zapisano</string>
 </resources>
