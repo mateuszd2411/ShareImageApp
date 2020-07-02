@@ -11,7 +11,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -132,8 +131,23 @@ public class CommentsActivity extends AppCompatActivity {
         hashMap.put("publisher", firebaseUser.getUid());
 
         reference.push().setValue(hashMap);
+        //notification
+        addNotifications();
         //after all set empty
         addcomment.setText("");
+    }
+
+    private void addNotifications(){
+        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Notifications")
+                .child(publisherid);
+
+        HashMap<String, Object> hashMap = new HashMap<>();
+        hashMap.put("userid", firebaseUser.getUid());
+        hashMap.put("text", "commented "+addcomment.getText().toString());
+        hashMap.put("postid", postid);
+        hashMap.put("ispost",true);
+
+        reference.push().setValue(hashMap);
     }
 
     private void getImage(){
