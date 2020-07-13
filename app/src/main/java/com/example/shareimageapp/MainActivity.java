@@ -20,6 +20,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.example.shareimageapp.Fragment.HomeFragment;
@@ -41,6 +42,7 @@ import java.util.Locale;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import es.dmoral.toasty.Toasty;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -189,6 +191,15 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         if (item.getItemId() == R.id.notifications) {
             selectedFragment = new NotificationFragment();
+        }
+
+        if (item.getItemId() == R.id.logout) {
+            //logic for logout user
+            FirebaseAuth.getInstance().signOut();
+            Toasty.info(MainActivity.this, R.string.logged_out, Toast.LENGTH_LONG, true).show();
+            //got to start activity
+            Intent intent = new Intent(MainActivity.this, StartActivity.class);
+            startActivity(intent);
         }
 
         drawerLayout.closeDrawer(GravityCompat.START);

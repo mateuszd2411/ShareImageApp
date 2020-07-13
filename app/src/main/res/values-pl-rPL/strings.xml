@@ -66,4 +66,6 @@
     <string name="Uploading">Aktualizuje…</string>
     <string name="updated">Zaktualizowanio Pomyślnie</string>
     <string name="Save">Zapisano</string>
+    <string name="log_out">Wyloguj</string>
+    <string name="logged_out">Wylogowano Pomyślnie</string>
 </resources>

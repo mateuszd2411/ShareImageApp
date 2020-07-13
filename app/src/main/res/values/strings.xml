@@ -65,4 +65,6 @@
     <string name="Uploading">Uploading…</string>
     <string name="updated">Updated Successfully</string>
     <string name="Save">Saved</string>
+    <string name="log_out">Log out</string>
+    <string name="logged_out">Logged out Successfully</string>
 </resources>
