@@ -120,6 +120,26 @@
             android:maxLines="1"
             android:textStyle="bold"
             android:textSize="18sp"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/dark_mode_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="5dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/drawer_mid_bar"
+        android:orientation="vertical">
+
+        <androidx.appcompat.widget.SwitchCompat
+            android:id="@+id/darkModeSwitch"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="@string/dark_mode"
+            android:textColor="?attr/textColor" />
 
     </LinearLayout>
 </RelativeLayout>
