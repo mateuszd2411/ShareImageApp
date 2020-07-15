@@ -67,4 +67,8 @@
     <string name="Save">Saved</string>
     <string name="log_out">Log out</string>
     <string name="logged_out">Logged out Successfully</string>
+    <string name="brightness">BRIGHTNESS</string>
+    <string name="constraint">CONSTRAINT</string>
+    <string name="saturation">SATURATION</string>
+
 </resources>

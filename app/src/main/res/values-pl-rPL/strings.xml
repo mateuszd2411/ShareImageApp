@@ -68,4 +68,7 @@
     <string name="Save">Zapisano</string>
     <string name="log_out">Wyloguj</string>
     <string name="logged_out">Wylogowano Pomyślnie</string>
+    <string name="brightness">JASNOSC</string>
+    <string name="constraint">KONTRAST</string>
+    <string name="saturation">SATURACJA</string>
 </resources>
