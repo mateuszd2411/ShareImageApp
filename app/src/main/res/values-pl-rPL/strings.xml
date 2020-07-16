@@ -71,4 +71,5 @@
     <string name="brightness">JASNOSC</string>
     <string name="constraint">KONTRAST</string>
     <string name="saturation">SATURACJA</string>
+    <string name="filter_name">NAZWA FILTRA</string>
 </resources>

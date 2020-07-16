@@ -72,5 +72,6 @@
     <string name="saturation">SATURATION</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="filter_name">FILTER NAME</string>
 
 </resources>
