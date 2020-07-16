@@ -12,4 +12,8 @@
     <color name="colorCardDark">#858585</color>
     <color name="colorTint">#9F9F9F</color>
     <color name="colorTintDark">#535353</color>
+
+<!--    For Filters in Photo Editor-->
+    <color name="selected_filter">#3C3839</color>
+    <color name="normal_filter">#0a0009</color>
 </resources>
