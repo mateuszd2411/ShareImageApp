@@ -33,6 +33,7 @@ import com.example.shareimageapp.PhotoEditor.EditorMainActivity;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -120,7 +121,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                     new HomeFragment()).commit();
         }
 
-        userInfo();
+            userInfo();
 
     }// onCreate END
 
@@ -223,12 +224,16 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
                 User user = dataSnapshot.getValue(User.class);
 
-                ImageView drawer_image_profile = (ImageView) findViewById(R.id.drawer_image_profile);
-                Glide.with(getApplicationContext()).load(user.getImageurl()).into(drawer_image_profile);
+                assert user != null;
+                if (user.getImageurl() != null) {
+                    ImageView drawer_image_profile = (ImageView) findViewById(R.id.drawer_image_profile);
+                    Glide.with(getApplicationContext()).load(user.getImageurl()).into(drawer_image_profile);
+                }
 
                 TextView drawer_fullname;
+
                 drawer_fullname = findViewById(R.id.drawer_fullname);
-                drawer_fullname.setText(user.getFullname());
+                drawer_fullname.setText(user != null ? user.getFullname() : null);
 
 
             }
