@@ -16,4 +16,5 @@
 <!--    For Filters in Photo Editor-->
     <color name="selected_filter">#3C3839</color>
     <color name="normal_filter">#0a0009</color>
+    <color name="color_option_menu">#ED0018</color>
 </resources>

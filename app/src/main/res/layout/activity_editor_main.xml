@@ -7,22 +7,22 @@
     tools:context=".PhotoEditor.EditorMainActivity"
     android:id="@+id/coordinator">>
 
-<!--    <com.google.android.material.appbar.AppBarLayout-->
-<!--        android:theme="@style/AppTheme.AppBarOverlay"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        tools:ignore="MissingConstraints">-->
+    <com.google.android.material.appbar.AppBarLayout
+        android:theme="@style/AppTheme.AppBarOverlay"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:ignore="MissingConstraints">
 
-<!--        <androidx.appcompat.widget.Toolbar-->
-<!--            android:id="@+id/toolBar"-->
-<!--            android:background="@android:color/white"-->
-<!--            app:popupTheme="@style/AppTheme.PopupOverlay"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="?attr/actionBarSize">-->
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolBar"
+            android:background="@android:color/white"
+            app:popupTheme="@style/AppTheme.PopupOverlay"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize">
 
-<!--        </androidx.appcompat.widget.Toolbar>-->
+        </androidx.appcompat.widget.Toolbar>
 
-<!--    </com.google.android.material.appbar.AppBarLayout>-->
+    </com.google.android.material.appbar.AppBarLayout>
 
     <include layout="@layout/content_main" />
 
