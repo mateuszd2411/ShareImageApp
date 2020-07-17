@@ -17,6 +17,11 @@
                 android:icon="@drawable/ic_edit_profile48x48"
                 android:title="@string/edit_profile" />
 
+            <item
+                android:id="@+id/photo_editor"
+                android:icon="@drawable/ic_photo_editor48x48"
+                android:title="@string/photo_editor" />
+
         </menu>
 
     </item>

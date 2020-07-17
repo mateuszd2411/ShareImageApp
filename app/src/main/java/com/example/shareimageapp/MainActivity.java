@@ -29,6 +29,7 @@ import com.example.shareimageapp.Fragment.ProfileFragment;
 import com.example.shareimageapp.Fragment.SearchFragment;
 import com.example.shareimageapp.Model.Post;
 import com.example.shareimageapp.Model.User;
+import com.example.shareimageapp.PhotoEditor.EditorMainActivity;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
@@ -186,6 +187,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         if (item.getItemId() == R.id.add_post) {
             Intent intent = new Intent(MainActivity.this, PostActivity.class);
+            startActivity(intent);
+        }
+
+        if (item.getItemId() == R.id.photo_editor) {
+            Intent intent = new Intent(MainActivity.this, EditorMainActivity.class);
             startActivity(intent);
         }
 

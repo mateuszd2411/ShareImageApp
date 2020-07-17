@@ -72,4 +72,5 @@
     <string name="constraint">KONTRAST</string>
     <string name="saturation">SATURACJA</string>
     <string name="filter_name">NAZWA FILTRA</string>
+    <string name="photo_editor">Edytor Zdjęć</string>
 </resources>
