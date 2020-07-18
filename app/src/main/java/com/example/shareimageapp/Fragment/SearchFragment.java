@@ -55,7 +55,7 @@ public class SearchFragment extends Fragment {
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
         mUsers = new ArrayList<>();
-        userAdapter = new UserAdapter(getContext(), mUsers);
+        userAdapter = new UserAdapter(getContext(), mUsers, true);
         recyclerView.setAdapter(userAdapter);
 
         readUsers();

@@ -23,6 +23,7 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.example.shareimageapp.Adapter.MyPhotoAdapter;
 import com.example.shareimageapp.EditProfileActivity;
+import com.example.shareimageapp.FollowersActivity;
 import com.example.shareimageapp.Model.Post;
 import com.example.shareimageapp.Model.User;
 import com.example.shareimageapp.R;
@@ -191,6 +192,26 @@ public class ProfileFragment extends Fragment {
             public void onClick(View view) {
                 recyclerView.setVisibility(View.GONE);
                 recyclerView_saves.setVisibility(View.VISIBLE);
+            }
+        });
+
+        followers.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getContext(), FollowersActivity.class);
+                intent.putExtra("id", profileid);
+                intent.putExtra("title", "followers");
+                startActivity(intent);
+            }
+        });
+
+        following.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getContext(), FollowersActivity.class);
+                intent.putExtra("id", profileid);
+                intent.putExtra("title", "following");
+                startActivity(intent);
             }
         });
 

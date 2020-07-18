@@ -19,6 +19,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.shareimageapp.CommentsActivity;
+import com.example.shareimageapp.FollowersActivity;
 import com.example.shareimageapp.Fragment.PostDetailFragment;
 import com.example.shareimageapp.Fragment.ProfileFragment;
 import com.example.shareimageapp.LoginActivity;
@@ -189,6 +190,16 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
                 Intent intent = new Intent(mContext, CommentsActivity.class);
                 intent.putExtra("postid", post.getPostid());
                 intent.putExtra("publisherid", post.getPublisher());
+                mContext.startActivity(intent);
+            }
+        });
+
+        viewHolder.likes.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(mContext, FollowersActivity.class);
+                intent.putExtra("id", post.getPostid());
+                intent.putExtra("title", "likes");
                 mContext.startActivity(intent);
             }
         });
