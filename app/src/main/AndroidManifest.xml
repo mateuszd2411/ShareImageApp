@@ -13,6 +13,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".FollowersActivity"></activity>
         <activity
             android:name=".PhotoEditor.EditorMainActivity"
             android:theme="@style/AppTheme.NoActionBar.FullScreen" />
