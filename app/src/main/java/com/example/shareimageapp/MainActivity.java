@@ -258,8 +258,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
                 TextView drawer_fullname;
 
-                drawer_fullname = findViewById(R.id.drawer_fullname);
-                drawer_fullname.setText("Full Name");
+//                drawer_fullname = findViewById(R.id.drawer_fullname);
+//                drawer_fullname.setText("Full Name");
 //                drawer_fullname.setText(user != null ? user.getFullname() : null);
 
 
