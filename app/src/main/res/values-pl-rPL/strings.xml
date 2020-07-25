@@ -73,4 +73,5 @@
     <string name="saturation">SATURACJA</string>
     <string name="filter_name">NAZWA FILTRA</string>
     <string name="photo_editor">Edytor Zdjęć</string>
+    <string name="options">Opcje</string>
 </resources>
