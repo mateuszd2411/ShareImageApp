@@ -135,7 +135,7 @@
         android:orientation="vertical">
 
         <androidx.appcompat.widget.SwitchCompat
-            android:id="@+id/darkModeSwitch"
+            android:id="@+id/drawerDarkModeSwitch"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:text="@string/dark_mode"

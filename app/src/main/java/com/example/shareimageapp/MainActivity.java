@@ -1,9 +1,11 @@
 package com.example.shareimageapp;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
+import androidx.appcompat.widget.SwitchCompat;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
@@ -18,6 +20,7 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -80,10 +83,33 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         //bind the current view
         ButterKnife.bind(this);
+
+        //Switch to dark mode theme on drawer navigation view
+        NavigationView navigationView = (NavigationView) findViewById(R.id.navigationView);
+        View headerView = navigationView.getHeaderView(0);
+        SwitchCompat drawerDarkModeSwitch = (SwitchCompat) headerView.findViewById(R.id.drawerDarkModeSwitch);
+
+        drawerDarkModeSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean isChecked) {
+                if (isChecked) {
+                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+                } else {
+                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+
+                }
+            }
+        });
+
         navigationView.setNavigationItemSelectedListener(this);
 
-        //Drawer Layout
+        //validation for switching to dark mode theme
+        if (AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES) {
+            drawerDarkModeSwitch.setChecked(true);
+        }
 
+
+        //Drawer Layout
         actionBarDrawerToggle = new ActionBarDrawerToggle(this,
                 drawerLayout,
                 toolbar,
@@ -121,7 +147,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                     new HomeFragment()).commit();
         }
 //comment because have some error
-//            userInfo();
+            userInfo();
 
     }// onCreate END
 
@@ -224,16 +250,17 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
                 User user = dataSnapshot.getValue(User.class);
 
-                assert user != null;
-                if (user.getImageurl() != null) {
-                    ImageView drawer_image_profile = (ImageView) findViewById(R.id.drawer_image_profile);
-                    Glide.with(getApplicationContext()).load(user.getImageurl()).into(drawer_image_profile);
-                }
+//                assert user != null;
+//                if (user.getImageurl() != null) {
+//                    ImageView drawer_image_profile = (ImageView) findViewById(R.id.drawer_image_profile);
+//                    Glide.with(getApplicationContext()).load(user.getImageurl()).into(drawer_image_profile);
+//                }
 
                 TextView drawer_fullname;
 
                 drawer_fullname = findViewById(R.id.drawer_fullname);
-                drawer_fullname.setText(user != null ? user.getFullname() : null);
+                drawer_fullname.setText("Full Name");
+//                drawer_fullname.setText(user != null ? user.getFullname() : null);
 
 
             }
