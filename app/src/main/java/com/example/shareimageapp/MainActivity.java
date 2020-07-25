@@ -120,8 +120,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
                     new HomeFragment()).commit();
         }
-
-            userInfo();
+//comment because have some error
+//            userInfo();
 
     }// onCreate END
 

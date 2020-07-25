@@ -26,6 +26,7 @@ import com.example.shareimageapp.EditProfileActivity;
 import com.example.shareimageapp.FollowersActivity;
 import com.example.shareimageapp.Model.Post;
 import com.example.shareimageapp.Model.User;
+import com.example.shareimageapp.OptionsActivity;
 import com.example.shareimageapp.R;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -211,6 +212,15 @@ public class ProfileFragment extends Fragment {
                 Intent intent = new Intent(getContext(), FollowersActivity.class);
                 intent.putExtra("id", profileid);
                 intent.putExtra("title", "following");
+                startActivity(intent);
+            }
+        });
+
+        //hamburger options
+        options.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getContext(), OptionsActivity.class);
                 startActivity(intent);
             }
         });
