@@ -11,8 +11,8 @@ import androidx.annotation.NonNull;
 import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.shareimageapp.PhotoEditor.Interface.FiltersListFragmentListener;
-import com.example.shareimageapp.R;
+import com.example.photoeditor.Interface.FiltersListFragmentListener;
+import com.example.photoeditor.R;
 import com.zomato.photofilters.utils.ThumbnailItem;
 
 import java.util.List;
@@ -61,6 +61,7 @@ public class ThumbnailAdapter extends RecyclerView.Adapter<ThumbnailAdapter.MyVi
         } else {
             holder.filter_name.setTextColor(ContextCompat.getColor(context, R.color.normal_filter));
         }
+
     }
 
     @Override

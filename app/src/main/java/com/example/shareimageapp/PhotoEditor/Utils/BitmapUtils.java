@@ -47,7 +47,7 @@ public class BitmapUtils {
     public static Bitmap getBitmapFromGallery(Context context, Uri uri, int width, int height) {
         String[] filePathColumn = {MediaStore.Images.Media.DATA};
         Cursor cursor = context.getContentResolver().query(uri, filePathColumn, null,
-                null,null);
+                null, null);
         cursor.moveToFirst();
 
         int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
@@ -63,21 +63,22 @@ public class BitmapUtils {
         return BitmapFactory.decodeFile(picturePath, options);
     }
 
-    public static Bitmap applyOverlay(Context context, Bitmap sourceImage, int overlayDrawableResourceId){
+    public static Bitmap applyOverlay(Context context, Bitmap sourceImage, int overlayDrawableResourceId) {
         Bitmap bitmap = null;
-        try{
+        try {
             int width = sourceImage.getWidth();
             int height = sourceImage.getHeight();
             Resources r = context.getResources();
 
-            Drawable imageAsDrawable =  new BitmapDrawable(r, sourceImage);
+            Drawable imageAsDrawable = new BitmapDrawable(r, sourceImage);
             Drawable[] layers = new Drawable[2];
 
             layers[0] = imageAsDrawable;
             layers[1] = new BitmapDrawable(r, BitmapUtils.decodeSampledBitmapFromResource(r, overlayDrawableResourceId, width, height));
             LayerDrawable layerDrawable = new LayerDrawable(layers);
             bitmap = BitmapUtils.drawableToBitmap(layerDrawable);
-        }catch (Exception ex){}
+        } catch (Exception ex) {
+        }
         return bitmap;
     }
 
@@ -120,17 +121,17 @@ public class BitmapUtils {
         return inSampleSize;
     }
 
-    public static Bitmap drawableToBitmap (Drawable drawable) {
+    public static Bitmap drawableToBitmap(Drawable drawable) {
         Bitmap bitmap = null;
 
         if (drawable instanceof BitmapDrawable) {
             BitmapDrawable bitmapDrawable = (BitmapDrawable) drawable;
-            if(bitmapDrawable.getBitmap() != null) {
+            if (bitmapDrawable.getBitmap() != null) {
                 return bitmapDrawable.getBitmap();
             }
         }
 
-        if(drawable.getIntrinsicWidth() <= 0 || drawable.getIntrinsicHeight() <= 0) {
+        if (drawable.getIntrinsicWidth() <= 0 || drawable.getIntrinsicHeight() <= 0) {
             bitmap = Bitmap.createBitmap(1, 1, Bitmap.Config.ARGB_8888); // Single color bitmap will be created of 1x1 pixel
         } else {
             bitmap = Bitmap.createBitmap(drawable.getIntrinsicWidth(), drawable.getIntrinsicHeight(), Bitmap.Config.ARGB_8888);
@@ -224,3 +225,4 @@ public class BitmapUtils {
         }
     }
 }
+

@@ -14,11 +14,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.shareimageapp.PhotoEditor.Adapter.ThumbnailAdapter;
-import com.example.shareimageapp.PhotoEditor.Interface.FiltersListFragmentListener;
-import com.example.shareimageapp.PhotoEditor.Utils.BitmapUtils;
-import com.example.shareimageapp.PhotoEditor.Utils.SpacesItemDecoration;
-import com.example.shareimageapp.R;
+import com.example.photoeditor.Adapter.ThumbnailAdapter;
+import com.example.photoeditor.Interface.FiltersListFragmentListener;
+import com.example.photoeditor.Utils.BitmapUtils;
+import com.example.photoeditor.Utils.SpacesItemDecoration;
+import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 import com.zomato.photofilters.FilterPack;
 import com.zomato.photofilters.imageprocessors.Filter;
 import com.zomato.photofilters.utils.ThumbnailItem;
@@ -27,13 +27,26 @@ import com.zomato.photofilters.utils.ThumbnailsManager;
 import java.util.ArrayList;
 import java.util.List;
 
-public class FilterListFragment extends Fragment implements FiltersListFragmentListener {
+public class FilterListFragment extends BottomSheetDialogFragment implements FiltersListFragmentListener {
 
     RecyclerView recyclerView;
     ThumbnailAdapter adapter;
     List<ThumbnailItem> thumbnailItems;
 
     FiltersListFragmentListener listener;
+
+    static FilterListFragment instance;
+    static Bitmap bitmap;
+
+
+    public static FilterListFragment getInstance(Bitmap bitmapSave) {
+        bitmap = bitmapSave;
+
+        if (instance == null) {
+            instance = new FilterListFragment();
+        }
+        return instance;
+    }
 
     public void setListener(FiltersListFragmentListener listener) {
         this.listener = listener;
@@ -47,7 +60,6 @@ public class FilterListFragment extends Fragment implements FiltersListFragmentL
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
     }
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -69,7 +81,7 @@ public class FilterListFragment extends Fragment implements FiltersListFragmentL
         recyclerView.addItemDecoration(new SpacesItemDecoration(space));
         recyclerView.setAdapter(adapter);
 
-        displayThumbnail(null);
+        displayThumbnail(bitmap);
 
         return itemView;
     }
@@ -82,7 +94,7 @@ public class FilterListFragment extends Fragment implements FiltersListFragmentL
                 Bitmap thumbImg;
                 if (bitmap == null) {
                     thumbImg = BitmapUtils.getBitmapFromAssets(getActivity(),
-                            EditorMainActivity.pictureName, 100, 100);
+                            MainActivity.pictureName, 100, 100);
                 } else {
                     thumbImg = Bitmap.createScaledBitmap(bitmap, 100, 100, false);
                 }

@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".PhotoEditor.EditorMainActivity"
-    android:id="@+id/coordinator">>
+    tools:context=".MainActivity"
+    android:id="@+id/coordinator">
 
     <com.google.android.material.appbar.AppBarLayout
         android:theme="@style/AppTheme.AppBarOverlay"
