@@ -13,9 +13,10 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 
-import com.example.photoeditor.Adapter.ColorAdapter;
-import com.example.photoeditor.Adapter.FontAdapter;
-import com.example.photoeditor.Interface.AddTextFragmentListener;
+import com.example.shareimageapp.PhotoEditor.Adapter.ColorAdapter;
+import com.example.shareimageapp.PhotoEditor.Adapter.FontAdapter;
+import com.example.shareimageapp.PhotoEditor.Interface.AddTextFragmentListener;
+import com.example.shareimageapp.R;
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 
 public class AddTextFragment extends BottomSheetDialogFragment implements ColorAdapter.ColorAdapterListener, FontAdapter.FontAdapterClickListener {

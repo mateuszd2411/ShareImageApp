@@ -9,7 +9,7 @@ import android.widget.ImageView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.photoeditor.R;
+import com.example.shareimageapp.R;
 
 import java.util.ArrayList;
 import java.util.List;

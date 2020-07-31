@@ -2,7 +2,6 @@ package com.example.shareimageapp.PhotoEditor;
 
 import android.os.Bundle;
 
-import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -10,8 +9,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.photoeditor.Adapter.EmojiAdapter;
-import com.example.photoeditor.Interface.EmojiFragmentListener;
+import com.example.shareimageapp.PhotoEditor.Adapter.EmojiAdapter;
+import com.example.shareimageapp.PhotoEditor.Interface.EmojiFragmentListener;
+import com.example.shareimageapp.R;
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 
 import ja.burhanrashid52.photoeditor.PhotoEditor;

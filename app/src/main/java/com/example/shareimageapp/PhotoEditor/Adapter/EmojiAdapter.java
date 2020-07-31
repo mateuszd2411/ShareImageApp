@@ -7,6 +7,8 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.shareimageapp.R;
+
 import java.util.List;
 
 import io.github.rockerhieu.emojicon.EmojiconTextView;

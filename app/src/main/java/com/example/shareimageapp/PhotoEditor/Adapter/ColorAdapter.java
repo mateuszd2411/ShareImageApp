@@ -9,8 +9,7 @@ import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.photoeditor.BrushFragment;
-import com.example.photoeditor.R;
+import com.example.shareimageapp.R;
 
 import java.util.ArrayList;
 import java.util.List;

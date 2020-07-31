@@ -2,14 +2,13 @@ package com.example.shareimageapp.PhotoEditor;
 
 import android.os.Bundle;
 
-import androidx.fragment.app.Fragment;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.SeekBar;
 
-import com.example.photoeditor.Interface.EditImageFragmentListener;
+import com.example.shareimageapp.PhotoEditor.Interface.EditImageFragmentListener;
+import com.example.shareimageapp.R;
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 
 public class EditImageFragment extends BottomSheetDialogFragment implements SeekBar.OnSeekBarChangeListener {

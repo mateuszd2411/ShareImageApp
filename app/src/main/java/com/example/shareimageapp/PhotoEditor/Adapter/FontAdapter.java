@@ -11,8 +11,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.photoeditor.AddTextFragment;
-import com.example.photoeditor.R;
+import com.example.shareimageapp.R;
 
 import java.util.ArrayList;
 import java.util.List;

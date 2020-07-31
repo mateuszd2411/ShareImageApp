@@ -1,9 +1,7 @@
 package com.example.shareimageapp.PhotoEditor;
 
-import android.graphics.Color;
 import android.os.Bundle;
 
-import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -14,12 +12,11 @@ import android.widget.CompoundButton;
 import android.widget.SeekBar;
 import android.widget.ToggleButton;
 
-import com.example.photoeditor.Adapter.ColorAdapter;
-import com.example.photoeditor.Interface.BrushFragmentListener;
+import com.example.shareimageapp.PhotoEditor.Adapter.ColorAdapter;
+import com.example.shareimageapp.PhotoEditor.Interface.BrushFragmentListener;
+import com.example.shareimageapp.R;
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 
-import java.util.ArrayList;
-import java.util.List;
 
 public class BrushFragment extends BottomSheetDialogFragment implements ColorAdapter.ColorAdapterListener {
 

@@ -26,8 +26,17 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.viewpager.widget.ViewPager;
 
+import com.example.shareimageapp.PhotoEditor.Adapter.ViewPagerAdapter;
+import com.example.shareimageapp.PhotoEditor.Interface.AddFrameListener;
+import com.example.shareimageapp.PhotoEditor.Interface.AddTextFragmentListener;
+import com.example.shareimageapp.PhotoEditor.Interface.BrushFragmentListener;
+import com.example.shareimageapp.PhotoEditor.Interface.EditImageFragmentListener;
+import com.example.shareimageapp.PhotoEditor.Interface.EmojiFragmentListener;
+import com.example.shareimageapp.PhotoEditor.Interface.FiltersListFragmentListener;
+import com.example.shareimageapp.PhotoEditor.Utils.BitmapUtils;
 import com.example.shareimageapp.R;
 import com.google.android.material.snackbar.Snackbar;
+import com.yalantis.ucrop.UCrop;
 import com.zomato.photofilters.imageprocessors.Filter;
 import com.zomato.photofilters.imageprocessors.subfilters.BrightnessSubFilter;
 import com.zomato.photofilters.imageprocessors.subfilters.ContrastSubFilter;
@@ -37,7 +46,11 @@ import java.io.File;
 import java.io.IOException;
 import java.util.UUID;
 
-public class MainActivity extends AppCompatActivity implements FiltersListFragmentListener, EditImageFragmentListener, BrushFragmentListener, EmojiFragmentListener, AddTextFragmentListener, AddFrameListener {
+import ja.burhanrashid52.photoeditor.OnSaveBitmap;
+import ja.burhanrashid52.photoeditor.PhotoEditor;
+import ja.burhanrashid52.photoeditor.PhotoEditorView;
+
+public class EditorMainActivity extends AppCompatActivity implements FiltersListFragmentListener, EditImageFragmentListener, BrushFragmentListener, EmojiFragmentListener, AddTextFragmentListener, AddFrameListener {
 
     public static final String pictureName = "flash.jpg";
     //    public static final int PERMISSION_PICK_IMAGE = 1000;
@@ -114,7 +127,7 @@ public class MainActivity extends AppCompatActivity implements FiltersListFragme
                     filtersListFragment.show(getSupportFragmentManager(), filtersListFragment.getTag());
                 } else {
                     FilterListFragment filterListFragment = FilterListFragment.getInstance(null);
-                    filterListFragment.setListener(MainActivity.this);
+                    filterListFragment.setListener(EditorMainActivity.this);
                     filterListFragment.show(getSupportFragmentManager(), filterListFragment.getTag());
                 }
             }
@@ -124,7 +137,7 @@ public class MainActivity extends AppCompatActivity implements FiltersListFragme
             @Override
             public void onClick(View view) {
                 EditImageFragment editImageFragment = EditImageFragment.getInstance();
-                editImageFragment.setListener(MainActivity.this);
+                editImageFragment.setListener(EditorMainActivity.this);
                 editImageFragment.show(getSupportFragmentManager(), editImageFragment.getTag());
             }
         });
@@ -136,7 +149,7 @@ public class MainActivity extends AppCompatActivity implements FiltersListFragme
                 photoEditor.setBrushDrawingMode(true);
 
                 BrushFragment brushFragment = BrushFragment.getInstance();
-                brushFragment.setListener(MainActivity.this);
+                brushFragment.setListener(EditorMainActivity.this);
                 brushFragment.show(getSupportFragmentManager(), brushFragment.getTag());
             }
         });
@@ -145,7 +158,7 @@ public class MainActivity extends AppCompatActivity implements FiltersListFragme
             @Override
             public void onClick(View view) {
                 EmojiFragment emojiFragment = EmojiFragment.getInstance();
-                emojiFragment.setListener(MainActivity.this);
+                emojiFragment.setListener(EditorMainActivity.this);
                 emojiFragment.show(getSupportFragmentManager(), emojiFragment.getTag());
             }
         });
@@ -154,7 +167,7 @@ public class MainActivity extends AppCompatActivity implements FiltersListFragme
             @Override
             public void onClick(View view) {
                 AddTextFragment addTextFragment = AddTextFragment.getInstance();
-                addTextFragment.setListener(MainActivity.this);
+                addTextFragment.setListener(EditorMainActivity.this);
                 addTextFragment.show(getSupportFragmentManager(), addTextFragment.getTag());
             }
         });
@@ -170,7 +183,7 @@ public class MainActivity extends AppCompatActivity implements FiltersListFragme
             @Override
             public void onClick(View view) {
                 FrameFragment frameFragment = FrameFragment.getInstance();
-                frameFragment.setListener(MainActivity.this);
+                frameFragment.setListener(EditorMainActivity.this);
                 frameFragment.show(getSupportFragmentManager(), frameFragment.getTag());
             }
         });
@@ -217,7 +230,7 @@ public class MainActivity extends AppCompatActivity implements FiltersListFragme
                 permissions[2]) == PackageManager.PERMISSION_GRANTED) {
             ////to do
         } else {
-            ActivityCompat.requestPermissions(MainActivity.this,
+            ActivityCompat.requestPermissions(EditorMainActivity.this,
                     permissions,
                     REQUEST_CODE);
         }
@@ -233,7 +246,7 @@ public class MainActivity extends AppCompatActivity implements FiltersListFragme
 
         UCrop uCrop = UCrop.of(uri, Uri.fromFile(new File(getCacheDir(), destinationFileName)));
 
-        uCrop.start(MainActivity.this);
+        uCrop.start(EditorMainActivity.this);
     }
 
     private void addImageToPicture() {

@@ -10,8 +10,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
-import com.example.photoeditor.Adapter.FrameAdapter;
-import com.example.photoeditor.Interface.AddFrameListener;
+import com.example.shareimageapp.PhotoEditor.Adapter.FrameAdapter;
+import com.example.shareimageapp.PhotoEditor.Interface.AddFrameListener;
+import com.example.shareimageapp.R;
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 
 public class FrameFragment extends BottomSheetDialogFragment implements FrameAdapter.FrameAdapterListener {
